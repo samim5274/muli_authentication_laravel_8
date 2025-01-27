@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\AgentController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// backend routes
+
+Route::get('/login/admin',[AdminController::class,'adminloginform'])->name('admin.login.form');
+
+Route::post('/login-admin',[AdminController::class,'adminlogin'])->name('admin.login');
+
+Route::group(['middleware'=>'admin'],function(){
+    Route::get('/admin/dashboard',[DashboardController::class,'admindashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout',[AdminController::class,'adminlogout'])->name('admin.logout');
+    Route::get('/audiance', [AgentController::class, 'audenceAdmin'])->name('audence.Admin');
+    Route::get('/agent-add', [AgentController::class, 'addAgent']);
+});
