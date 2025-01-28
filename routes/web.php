@@ -24,4 +24,6 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/logout',[AdminController::class,'adminlogout'])->name('admin.logout');
     Route::get('/audiance', [AgentController::class, 'audenceAdmin'])->name('audence.Admin');
     Route::get('/agent-add', [AgentController::class, 'addAgent']);
+    Route::get('/update/{id}', [AgentController::class, 'updateAgentView']);
+    Route::get('/edit/{id}', [AgentController::class, 'editAgentView']);
 });

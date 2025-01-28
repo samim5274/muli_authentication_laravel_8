@@ -50,4 +50,36 @@ class AgentController extends Controller
             return redirect()->route('audence.Admin')->with('success','Audence AGENT data added successfully.');
         }
     }
+
+    public function updateAgentView($id)
+    {
+        $agent = Agent::find($id);
+        return view('backend.admin.edit_agent', compact('agent'));
+    }
+
+    public function editAgentView(Request $request, $id)
+    {
+        $agent = Agent::find($id);
+
+        $request->validate([
+            'txtagencyName' => 'required',
+            'txtfastname' => 'required',
+            'txtlastname' => 'required',
+            'txtphone' => 'required',
+            'txtEmail' => 'required',
+            'txtAddress' => 'required',
+            'txtRM' => 'required',
+        ]);
+
+        $agent->agencyName = $request->has('txtagencyName') ? $request->get('txtagencyName') : '';
+        $agent->firstname = $request->has('txtfastname')? $request->get('txtfastname'):'';
+        $agent->lastname = $request->has('txtlastname')? $request->get('txtlastname'):'';
+        $agent->email = $request->has('txtEmail')? $request->get('txtEmail'):'';
+        $agent->phone = $request->has('txtphone')? $request->get('txtphone'):'';
+        $agent->address = $request->has('txtAddress')? $request->get('txtAddress'):'';
+        $agent->rln = $request->has('txtRM')? $request->get('txtRM'):'';
+
+        $agent->update();
+        return redirect()->route('audence.Admin')->with('success','Audence AGENT data updated successfully.');
+    }
 }
