@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\AgentController;
 use App\Http\Controllers\Backend\CountryController;
+use App\Http\Controllers\Backend\ClientController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,5 +35,10 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/country', [CountryController::class, 'countryAdmin'])->name('country.Admin');
     Route::get('/country-add', [CountryController::class, 'AddCountry']);
     Route::get('/update-country/{id}', [CountryController::class, 'UpdateCountryView']);
-    Route::get('/edit-country//{id}', [CountryController::class, 'editCountry']);
+    Route::get('/edit-country/{id}', [CountryController::class, 'editCountry']);
+
+    // client route section
+    Route::get('/client-view', [ClientController::class, 'client'])->name('client.view');
+    Route::get('/add-client', [ClientController::class, 'addClient']);
+    Route::get('/update-clients/{id}', [ClientController::class, 'updateClient']);
 });

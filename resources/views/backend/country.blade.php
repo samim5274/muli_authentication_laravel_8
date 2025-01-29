@@ -133,7 +133,7 @@
                                 </tbody>
                             </table>
                             <div class="pagination pt-4">
-                            {{ $countrys->onEachSide(1)->links() }}
+                                {{ $countrys->onEachSide(1)->links() }}
                             </div>
                         </div>
                     </div>

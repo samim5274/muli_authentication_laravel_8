@@ -10,7 +10,7 @@ class CountryController extends Controller
 {
     public function countryAdmin()
     {
-        $countrys = Country::paginate(6);
+        $countrys = Country::paginate(8);
         return view('backend.country', compact('countrys'));
     }
 
@@ -24,6 +24,7 @@ class CountryController extends Controller
             'txtClientAdvance' => 'required',
             'txtB2bRate' => 'required',
             'txtB2bAdvance' => 'required',
+            'txtRemark' => 'required',
         ]);
 
         // country search
@@ -57,6 +58,27 @@ class CountryController extends Controller
 
     public function editCountry(Request $request, $id)
     {
-        dd($request->all());
+        // dd($request->all());
+
+        $countryEdit = Country::find($id);
+
+        $request -> validate([
+            'txtCountry' => 'required',
+            'txtClientRate' => 'required',
+            'txtClientAdvance' => 'required',
+            'txtB2bRate' => 'required',
+            'txtB2bAdvance' => 'required',
+            'txtRemark' => 'required',
+        ]);
+
+        $countryEdit->countryName = $request->has('txtCountry') ? $request->get('txtCountry') : '';
+        $countryEdit->clientCost = $request->has('txtClientRate') ? $request->get('txtClientRate') : '';
+        $countryEdit->clientAdvance = $request->has('txtClientAdvance') ? $request->get('txtClientAdvance') : '';
+        $countryEdit->agentCost = $request->has('txtB2bRate') ? $request->get('txtB2bRate') : '';
+        $countryEdit->agentAdvance = $request->has('txtB2bAdvance') ? $request->get('txtB2bAdvance') : '';
+        $countryEdit->remark = $request->has('txtRemark') ? $request->get('txtRemark') : '';
+
+        $countryEdit->update();
+        return redirect()->route('country.Admin')->with('success', 'Country updated data successfully.');
     }
 }

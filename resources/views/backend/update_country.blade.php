@@ -52,7 +52,7 @@
                 <div class="col-lg-12 col-lg-6">
                     <div class="app-card app-card-stat shadow-sm h-100">
                         <div class="app-card-body p-3 p-lg-4">                            
-                            <form action="{{url('//edit-country/'.$country->id)}}" method="GET">
+                            <form action="{{url('/edit-country/'.$country->id)}}" method="GET">
                                 @csrf
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon3">Country Name</span>
