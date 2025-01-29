@@ -47,6 +47,10 @@ return [
         'agent' => [
             'driver' => 'session',
             'provider' => 'agent',
+        ],
+        'country' => [
+            'driver' => 'session',
+            'provider' => 'country',
         ]
     ],
 
@@ -81,6 +85,11 @@ return [
         'agent' => [
             'driver' => 'eloquent',
             'model' => App\Models\Agent::class,
+        ],
+
+        'country' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Country::class,
         ]
 
         // 'users' => [

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2025 at 08:23 PM
+-- Generation Time: Jan 28, 2025 at 07:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -74,7 +74,7 @@ INSERT INTO `agents` (`id`, `agencyName`, `firstname`, `lastname`, `email`, `pho
 (2, 'Ethical International', 'Jasim', 'Uddin', 'ethical@gmail.com', 1762154875, 'Uttara, Dhaka', 'N/A', NULL, '2025-01-26 12:24:51', '2025-01-26 12:24:51'),
 (4, 'Swift Overseas Tours & Travels', 'Ashadul', 'Alam', 'swiftoverseastravels1@gmail.com', 1457854269, 'HM Plaza, Lift-12, Room no-07, Uttara-03, Dhaka-1230', 'N/A', NULL, '2025-01-26 12:26:14', '2025-01-26 12:26:14'),
 (5, 'Al-Amin Air International', 'Al', 'Amin Khan', 'alamin@gmail.com', 1245789632, 'Dokkhin khan, Uttara, Dhaka', 'N/A', NULL, '2025-01-26 12:44:08', '2025-01-26 12:44:08'),
-(6, 'Atik Air International', 'Atik', 'Islam', 'atik@gmail.com', 1365248565, 'Uttara, Dhaka', 'N/A', NULL, '2025-01-26 12:47:24', '2025-01-26 12:47:24'),
+(6, 'Atik Air International', 'Atik', 'Islam', 'atik@gmail.com', 1365248565, 'Uttara, Dhaka', 'RML5698', NULL, '2025-01-26 12:47:24', '2025-01-28 09:52:17'),
 (7, 'Sakib Overseas Tours & Travels', 'Skaib', 'Khan', 'sakib@gmail.com', 1478523695, 'Uttara, Dhaka', 'N/A', NULL, '2025-01-26 12:51:24', '2025-01-26 12:51:24'),
 (8, 'Shahed Air Internatinal', 'Shahed', 'Parves', 'shahed@gmail.com', 1547854236, 'Sirajgonj, Rajshahi', 'N/A', NULL, '2025-01-26 12:55:53', '2025-01-26 12:55:53'),
 (9, 'Manik Overseas', 'Manik', 'Mia', 'manik@gmail.com', 1323748592, 'Sylhet, Dhaka, Bangladesh', 'N/A', NULL, '2025-01-26 12:56:57', '2025-01-26 12:56:57'),
@@ -83,6 +83,32 @@ INSERT INTO `agents` (`id`, `agencyName`, `firstname`, `lastname`, `email`, `pho
 (12, 'Monir Overseas', 'Monir', 'Mia', 'monir@gmail.com', 1892837483, 'Gulshan, Dhaka-1220', 'N/A', NULL, '2025-01-26 12:59:13', '2025-01-26 12:59:13'),
 (13, 'Mahim Air International', 'Mahim', 'Ali', 'mahim@gmail.com', 1324857689, 'Kaliakair, Gazipur, Dhaka', 'N/A', NULL, '2025-01-26 13:03:41', '2025-01-26 13:03:41'),
 (14, 'Mokbol Overseas', 'Mokbol', 'Alam', 'mokbol@gmail.com', 1928374658, 'Uttara, Dhaka', 'BFH32165', NULL, '2025-01-26 13:12:42', '2025-01-26 13:12:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `countries`
+--
+
+CREATE TABLE `countries` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `countryName` varchar(255) NOT NULL,
+  `clientCost` int(11) NOT NULL,
+  `clientAdvance` int(11) NOT NULL,
+  `agentCost` int(11) NOT NULL,
+  `agentAdvance` int(11) NOT NULL,
+  `remark` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `countries`
+--
+
+INSERT INTO `countries` (`id`, `countryName`, `clientCost`, `clientAdvance`, `agentCost`, `agentAdvance`, `remark`, `created_at`, `updated_at`) VALUES
+(1, 'Serbia', 850000, 50000, 800000, 50000, 'N/A', '2025-01-28 11:36:07', '2025-01-28 11:36:07'),
+(2, 'Bosnia', 900000, 50000, 850000, 50000, 'N/A', '2025-01-28 11:44:45', '2025-01-28 11:44:45');
 
 -- --------------------------------------------------------
 
@@ -122,7 +148,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (6, '2025_01_24_152155_create_admins_table', 2),
-(9, '2025_01_26_172246_create_agents_table', 3);
+(9, '2025_01_26_172246_create_agents_table', 3),
+(14, '2025_01_28_172915_create_countries_table', 4);
 
 -- --------------------------------------------------------
 
@@ -197,6 +224,12 @@ ALTER TABLE `agents`
   ADD UNIQUE KEY `agents_email_unique` (`email`);
 
 --
+-- Indexes for table `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -247,6 +280,12 @@ ALTER TABLE `agents`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `countries`
+--
+ALTER TABLE `countries`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -256,7 +295,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

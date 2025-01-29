@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\AgentController;
+use App\Http\Controllers\Backend\CountryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,8 +23,16 @@ Route::post('/login-admin',[AdminController::class,'adminlogin'])->name('admin.l
 Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/dashboard',[DashboardController::class,'admindashboard'])->name('admin.dashboard');
     Route::get('/admin/logout',[AdminController::class,'adminlogout'])->name('admin.logout');
+
+    // agent routes section
     Route::get('/audiance', [AgentController::class, 'audenceAdmin'])->name('audence.Admin');
     Route::get('/agent-add', [AgentController::class, 'addAgent']);
     Route::get('/update/{id}', [AgentController::class, 'updateAgentView']);
     Route::get('/edit/{id}', [AgentController::class, 'editAgentView']);
+
+    // country routes section 
+    Route::get('/country', [CountryController::class, 'countryAdmin'])->name('country.Admin');
+    Route::get('/country-add', [CountryController::class, 'AddCountry']);
+    Route::get('/update-country/{id}', [CountryController::class, 'UpdateCountryView']);
+    Route::get('/edit-country//{id}', [CountryController::class, 'editCountry']);
 });

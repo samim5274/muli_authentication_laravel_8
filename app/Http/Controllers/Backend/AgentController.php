@@ -28,16 +28,16 @@ class AgentController extends Controller
             'txtRM' => 'required',
         ]);
 
-        // $userinfo = User::where('email', $email)->Where('password',$pass)->first();
-        $email = $request->has('txtEmail')? $request->get('txtEmail'):'';
-        
+        // Search email address
+        $email = $request->has('txtEmail')? $request->get('txtEmail'):'';        
         $emailSearch = Agent::where('email', $email)->first();
 
         if(isset($emailSearch))
         {
             return redirect()->route('audence.Admin')->with('error','Email address already taken. Please try to different email account.');
         }
-        else{
+        else
+        {
             $agent->agencyName = $request->has('txtagencyName') ? $request->get('txtagencyName') : '';
             $agent->firstname = $request->has('txtfastname')? $request->get('txtfastname'):'';
             $agent->lastname = $request->has('txtlastname')? $request->get('txtlastname'):'';
@@ -82,4 +82,5 @@ class AgentController extends Controller
         $agent->update();
         return redirect()->route('audence.Admin')->with('success','Audence AGENT data updated successfully.');
     }
+
 }
