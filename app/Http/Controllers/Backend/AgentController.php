@@ -10,8 +10,8 @@ class AgentController extends Controller
 {
     public function audenceAdmin()
     {
-        $Agents = Agent::paginate(6);
-        return view('audence', compact('Agents'));
+        $Agents = Agent::paginate(8);
+        return view('backend.audence', compact('Agents'));
     }
 
     public function addAgent(Request $request)

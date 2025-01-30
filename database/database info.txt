@@ -1,0 +1,3 @@
+database:multi_auth
+username:muli_auth_user
+password:^Cwg~6FOMzrC

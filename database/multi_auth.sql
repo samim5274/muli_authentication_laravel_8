@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2025 at 08:08 PM
+-- Generation Time: Jan 30, 2025 at 12:51 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -82,7 +82,8 @@ INSERT INTO `agents` (`id`, `agencyName`, `firstname`, `lastname`, `email`, `pho
 (11, 'Sabbir Enterprice Tours & Travels', 'Sabbir', 'Hossain', 'sabbir@gmail.com', 1827364536, 'Kaliakair, Gazipur, Dhaka', 'N/A', NULL, '2025-01-26 12:58:11', '2025-01-26 12:58:11'),
 (12, 'Monir Overseas', 'Monir', 'Mia', 'monir@gmail.com', 1892837483, 'Gulshan, Dhaka-1220', 'N/A', NULL, '2025-01-26 12:59:13', '2025-01-26 12:59:13'),
 (13, 'Mahim Air International', 'Mahim', 'Ali', 'mahim@gmail.com', 1324857689, 'Kaliakair, Gazipur, Dhaka', 'N/A', NULL, '2025-01-26 13:03:41', '2025-01-26 13:03:41'),
-(14, 'Mokbol Overseas', 'Mokbol', 'Alam', 'mokbol@gmail.com', 1928374658, 'Uttara, Dhaka', 'BFH32165', NULL, '2025-01-26 13:12:42', '2025-01-26 13:12:42');
+(14, 'Mokbol Overseas', 'Mokbol', 'Alam', 'mokbol@gmail.com', 1928374658, 'Uttara, Dhaka', 'BFH32165', NULL, '2025-01-26 13:12:42', '2025-01-26 13:12:42'),
+(15, 'Ekra Overseas Tours & Travels', 'Imamul', 'Hasan Ekra', 'ekra@gmail.com', 1547854652, 'Islampur, Jamalpur', 'RM548795', NULL, '2025-01-30 00:37:20', '2025-01-30 00:37:20');
 
 -- --------------------------------------------------------
 
@@ -144,7 +145,7 @@ INSERT INTO `clients` (`id`, `firstName`, `lastname`, `dob`, `phone`, `genderId`
 (9, 'Rahim', 'Badsha', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir43@gmail.com', 'A3216543', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 10, 1000000, 100000, 8, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:02:57', '2025-01-29 12:36:56'),
 (11, 'Pabel', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'pabel@gmail.com', 'A3216521', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 12, 1000000, 100000, 6, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:03:16', '2025-01-29 12:37:14'),
 (12, 'Farid', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'farid@gmail.com', 'A32165412', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 2, 1000000, 100000, 4, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:03:26', '2025-01-29 12:37:36'),
-(13, 'Sabbir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir76@gmail.com', 'A321678', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 14, 1000000, 100000, 9, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:03:36', '2025-01-29 04:03:36'),
+(13, 'Rakibul', 'Islam', '2001-01-31', 1356847592, 1, 'Uttara, Dhaka-1230', 'sabbir76@gmail.com', 'A321678', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 2, 1000000, 100000, 8, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:03:36', '2025-01-29 23:46:26'),
 (14, 'Emon', 'Hossain', '2001-12-01', 1732564875, 1, 'Narshingdhi, Dhaka', 'emon@gmail.com', 'A326458', 'BGD', 'DIP/DHAKA', '321654987', 'Narshingdhi', '2025-01-01', '2035-01-29', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Narshingdhi, Dhaka', '123654789', 8, 1350000, 20000, 3, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 11:11:19', '2025-01-29 11:11:19'),
 (15, 'Shamim', 'Hossain', '2001-12-31', 1533021557, 1, 'Kaliakair, Gazipur, Dhaka', 'samim@gmail.com', 'A654987', 'BGD', 'DIP/DHAKA', '654987321', 'Gazipur', '2025-01-01', '2035-01-29', 'Jamsher Ali', 'Shofiya Begum', NULL, NULL, NULL, 'Jamsher Ali', 'Father', 'Kaliakair, Gazipur, Dhaka', '3216549873', 4, 1000000, 50000, 7, NULL, NULL, NULL, '6 month a visa dibe. other wise taka back dibe.', NULL, NULL, NULL, NULL, '2025-01-29 11:49:40', '2025-01-29 12:33:19');
 
@@ -356,7 +357,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `agents`
 --
 ALTER TABLE `agents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `clients`

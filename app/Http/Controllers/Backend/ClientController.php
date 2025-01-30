@@ -12,10 +12,13 @@ class ClientController extends Controller
 {
     public function client()
     {
-        $agents = Agent::all();
-        $countrys = Country::all();
-        $clients = Client::paginate(8);
-        return view('backend.client', compact('agents','countrys','clients'));
+        // $agents = Agent::all();
+        // $countrys = Country::all();
+        // $clients = Client::paginate(8);
+        // $clients = Country::find(3)->client;
+        $clients = Country::with('client')->get();
+        dd($clients);
+        // return view('backend.client', compact('agents','countrys','clients'));
     }
 
     public function addClient(Request $request)
@@ -128,7 +131,18 @@ class ClientController extends Controller
     public function editClient(Request $request, $id)
     {
         $clients = Client::find($id);
-        
+
+        $country = $request->has('cbxCountry') ? $request->get('cbxCountry') : '';
+        $refer = $request->has('cbxRefer') ? $request->get('cbxRefer') : '';
+
+        if($refer == 'Select Reference'){
+            return redirect()->back()->with('error', 'Please select you reference');
+        }
+
+        if($country == 'Select country'){
+            return redirect()->back()->with('error', 'Please select you country');
+        }
+
         $request->validate([
             'firstName' => 'required',
             'lastname' => 'required',
@@ -154,11 +168,13 @@ class ClientController extends Controller
             'txtERelation' => 'required',
             'txtEPhone' => 'required',
             'txtEAddress' => 'required',
-            'cbxRefer' => 'required',
+            // 'cbxRefer' => 'required',
             'txtCAmount' => 'required',
             'txtAdvance' => 'required',
-            'cbxCountry' => 'required',
+            // 'cbxCountry' => 'required',
         ]);
+
+        
 
         $clients->firstName = $request->has('firstName') ? $request->get('firstName') : '';
         $clients->lastname = $request->has('lastname') ? $request->get('lastname') : '';
