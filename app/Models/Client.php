@@ -46,4 +46,5 @@ class Client extends Model
             'nidImg',
             'sNidImg',
     ];
+
 }

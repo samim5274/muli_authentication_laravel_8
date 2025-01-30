@@ -78,11 +78,11 @@ class ClientController extends Controller
             // $clients->s_dob = $request->has('dtpSDOB') ? $request->get('dtpSDOB') : '';
             // $clients->s_address = $request->has('txtSAddress') ? $request->get('txtSAddress') : '';
 
-            $clients->fatherName = 'Amir Hossain';
-            $clients->motherName = 'Mst. Amina Begum';
-            $clients->spouseName = 'Mst. Amina Begum';
-            $clients->s_dob = '1995-01-01';
-            $clients->s_address = 'Dhaka';
+            $clients->fatherName = NULL;
+            $clients->motherName = NULL;
+            $clients->spouseName = NULL;
+            $clients->s_dob = NULL;
+            $clients->s_address = NULL;
 
             $clients->emgName = $request->has('txtEName') ? $request->get('txtEName') : '';
             $clients->emgRelation = $request->has('txtERelation') ? $request->get('txtERelation') : '';
@@ -102,9 +102,9 @@ class ClientController extends Controller
             // $clients->nidImg = $request->has('nidImg') ? $request->get('nidImg') : '';
             // $clients->sNidImg = $request->has('sNidImg') ? $request->get('sNidImg') : '';
 
-            $clients->payMathod = 'Bank';
-            $clients->payBankName = 'DBBL';
-            $clients->payAccountNum = '123456789';
+            $clients->payMathod = NULL;
+            $clients->payBankName = NULL;
+            $clients->payAccountNum = NULL;
             $clients->remark = 'N/A';
             $clients->pImg = NULL;
             $clients->passImg = NULL;
@@ -118,7 +118,81 @@ class ClientController extends Controller
 
     public function updateClient(Request $request, $id)
     {
+        $agents = Agent::all();
+        $countrys = Country::all();
         $clients = Client::find($id);
-        return view('backend.update_client', compact('clients'));
+
+        return view('backend.update_client', compact('agents','countrys','clients'));
+    }
+
+    public function editClient(Request $request, $id)
+    {
+        $clients = Client::find($id);
+        
+        $request->validate([
+            'firstName' => 'required',
+            'lastname' => 'required',
+            'txtphone' => 'required',
+            'dtpDOB' => 'required',
+            'cbxGender' => 'required',
+            'txtEmail' => 'required',
+            'txtAddress' => 'required',
+            'txtPleaseOfBirth' => 'required',
+            'txtPassportNum' => 'required',
+            'txtCountryCode' => 'required',
+            'txtPassAuth' => 'required',
+            'txtNid' => 'required',
+            'dtpPIssueDateS' => 'required',
+            'dtpPIssueDateE' => 'required',
+            'txtRemark' => 'required',
+            'txtFatherName' => 'required',
+            'txtMotherName' => 'required',
+            // 'txtSpouseName' => 'required',
+            // 'dtpSpouseDob' => 'required',
+            // 'txtSpouseAddress' => 'required',
+            'txtEName' => 'required',
+            'txtERelation' => 'required',
+            'txtEPhone' => 'required',
+            'txtEAddress' => 'required',
+            'cbxRefer' => 'required',
+            'txtCAmount' => 'required',
+            'txtAdvance' => 'required',
+            'cbxCountry' => 'required',
+        ]);
+
+        $clients->firstName = $request->has('firstName') ? $request->get('firstName') : '';
+        $clients->lastname = $request->has('lastname') ? $request->get('lastname') : '';
+        $clients->phone = $request->has('txtphone') ? $request->get('txtphone') : '';
+        $clients->dob = $request->has('dtpDOB') ? $request->get('dtpDOB') : '';
+        $clients->genderId = $request->has('cbxGender') ? $request->get('cbxGender') : '';
+        $clients->address = $request->has('txtAddress') ? $request->get('txtAddress') : '';
+        $clients->email = $request->has('txtEmail') ? $request->get('txtEmail') : '';
+        $clients->plaseOfBirth = $request->has('txtPleaseOfBirth') ? $request->get('txtPleaseOfBirth') : '';
+        $clients->passportNum = $request->has('txtPassportNum') ? $request->get('txtPassportNum') : '';
+        $clients->countryCode = $request->has('txtCountryCode') ? $request->get('txtCountryCode') : '';
+        $clients->passportAuthority = $request->has('txtPassAuth') ? $request->get('txtPassAuth') : '';
+        $clients->nidNumm = $request->has('txtNid') ? $request->get('txtNid') : '';
+        $clients->passportIssueDateStart = $request->has('dtpPIssueDateS') ? $request->get('dtpPIssueDateS') : '';
+        $clients->passportIssueDateEnd = $request->has('dtpPIssueDateE') ? $request->get('dtpPIssueDateE') : '';
+        $clients->fatherName = $request->has('txtFatherName') ? $request->get('txtFatherName') : '';
+        $clients->motherName = $request->has('txtMotherName') ? $request->get('txtMotherName') : '';
+        $clients->spouseName = $request->has('txtSpouseName') ? $request->get('txtSpouseName') : '';
+        $clients->s_dob = $request->has('dtpSpouseDob') ? $request->get('dtpSpouseDob') : '';
+        $clients->s_address = $request->has('txtSpouseAddress') ? $request->get('txtSpouseAddress') : '';
+        $clients->emgName = $request->has('txtEName') ? $request->get('txtEName') : '';
+        $clients->emgRelation = $request->has('txtERelation') ? $request->get('txtERelation') : '';
+        $clients->emgAddress = $request->has('txtEAddress') ? $request->get('txtEAddress') : '';
+        $clients->emgPhone = $request->has('txtEPhone') ? $request->get('txtEPhone') : '';
+        $clients->referid = $request->has('cbxRefer') ? $request->get('cbxRefer') : '';
+        $clients->countructAmount = $request->has('txtCAmount') ? $request->get('txtCAmount') : '';
+        $clients->advance = $request->has('txtAdvance') ? $request->get('txtAdvance') : '';
+        $clients->countryId = $request->has('cbxCountry') ? $request->get('cbxCountry') : '';
+        // $clients->payMathod = $request->has('cbxPMethod') ? $request->get('cbxPMethod') : '';
+        // $clients->payBankName = $request->has('txtPBankName') ? $request->get('txtPBankName') : '';
+        // $clients->payAccountNum = $request->has('txtPAccountNum') ? $request->get('txtPAccountNum') : '';
+        $clients->remark = $request->has('txtRemark') ? $request->get('txtRemark') : '';
+
+        $clients->update();
+        return redirect()->route('client.view')->with('success', 'Client updated successfully');
     }
 }

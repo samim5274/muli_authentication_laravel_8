@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2025 at 12:38 PM
+-- Generation Time: Jan 29, 2025 at 08:08 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -106,11 +106,11 @@ CREATE TABLE `clients` (
   `plaseOfBirth` varchar(255) NOT NULL,
   `passportIssueDateStart` varchar(255) NOT NULL,
   `passportIssueDateEnd` varchar(255) NOT NULL,
-  `fatherName` varchar(255) NOT NULL,
-  `motherName` varchar(255) NOT NULL,
-  `spouseName` varchar(255) NOT NULL,
-  `s_dob` varchar(255) NOT NULL,
-  `s_address` varchar(255) NOT NULL,
+  `fatherName` varchar(255) DEFAULT NULL,
+  `motherName` varchar(255) DEFAULT NULL,
+  `spouseName` varchar(255) DEFAULT NULL,
+  `s_dob` varchar(255) DEFAULT NULL,
+  `s_address` varchar(255) DEFAULT NULL,
   `emgName` varchar(255) NOT NULL,
   `emgRelation` varchar(255) NOT NULL,
   `emgAddress` varchar(255) NOT NULL,
@@ -119,9 +119,9 @@ CREATE TABLE `clients` (
   `countructAmount` int(11) NOT NULL,
   `advance` int(11) NOT NULL,
   `countryId` int(11) NOT NULL,
-  `payMathod` varchar(255) NOT NULL,
-  `payBankName` varchar(255) NOT NULL,
-  `payAccountNum` varchar(255) NOT NULL,
+  `payMathod` varchar(255) DEFAULT NULL,
+  `payBankName` varchar(255) DEFAULT NULL,
+  `payAccountNum` varchar(255) DEFAULT NULL,
   `remark` varchar(255) NOT NULL,
   `pImg` varchar(255) DEFAULT NULL,
   `passImg` varchar(255) DEFAULT NULL,
@@ -137,14 +137,16 @@ CREATE TABLE `clients` (
 
 INSERT INTO `clients` (`id`, `firstName`, `lastname`, `dob`, `phone`, `genderId`, `address`, `email`, `passportNum`, `countryCode`, `passportAuthority`, `nidNumm`, `plaseOfBirth`, `passportIssueDateStart`, `passportIssueDateEnd`, `fatherName`, `motherName`, `spouseName`, `s_dob`, `s_address`, `emgName`, `emgRelation`, `emgAddress`, `emgPhone`, `referid`, `countructAmount`, `advance`, `countryId`, `payMathod`, `payBankName`, `payAccountNum`, `remark`, `pImg`, `passImg`, `nidImg`, `sNidImg`, `created_at`, `updated_at`) VALUES
 (1, 'Sabbir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir@gamil.com', 'A321654', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 14, 1000000, 100000, 9, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 03:29:20', '2025-01-29 03:29:20'),
-(4, 'Sabbir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir2@gmail.com', 'A321655', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 14, 1000000, 100000, 9, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 03:31:41', '2025-01-29 03:31:41'),
-(6, 'Sabbir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir1@gmail.com', 'A321656', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 14, 1000000, 100000, 9, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 03:32:17', '2025-01-29 03:32:17'),
-(7, 'Sabbir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir32@gmail.com', 'A321645', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 14, 1000000, 100000, 9, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:01:54', '2025-01-29 04:01:54'),
-(8, 'Sabbir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir12@gmail.com', 'A321646', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 14, 1000000, 100000, 9, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:02:08', '2025-01-29 04:02:08'),
-(9, 'Sabbir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir43@gmail.com', 'A3216543', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 14, 1000000, 100000, 9, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:02:57', '2025-01-29 04:02:57'),
-(11, 'Sabbir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir123@gmail.com', 'A3216521', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 14, 1000000, 100000, 9, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:03:16', '2025-01-29 04:03:16'),
-(12, 'Sabbir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir656@gmail.com', 'A32165412', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 14, 1000000, 100000, 9, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:03:26', '2025-01-29 04:03:26'),
-(13, 'Sabbir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir76@gmail.com', 'A321678', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 14, 1000000, 100000, 9, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:03:36', '2025-01-29 04:03:36');
+(4, 'Sharmim', 'Akter', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sharmin@gmail.com', 'A321655', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 8, 1000000, 100000, 4, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 03:31:41', '2025-01-29 12:34:02'),
+(6, 'Rakibul', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'rakibul@gmail.com', 'A321656', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 13, 1000000, 100000, 3, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 03:32:17', '2025-01-29 12:34:26'),
+(7, 'Abir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir32@gmail.com', 'A321645', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 5, 1000000, 100000, 2, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:01:54', '2025-01-29 12:36:20'),
+(8, 'Limon', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir12@gmail.com', 'A321646', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 9, 1000000, 100000, 1, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:02:08', '2025-01-29 12:36:36'),
+(9, 'Rahim', 'Badsha', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir43@gmail.com', 'A3216543', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 10, 1000000, 100000, 8, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:02:57', '2025-01-29 12:36:56'),
+(11, 'Pabel', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'pabel@gmail.com', 'A3216521', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 12, 1000000, 100000, 6, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:03:16', '2025-01-29 12:37:14'),
+(12, 'Farid', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'farid@gmail.com', 'A32165412', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 2, 1000000, 100000, 4, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:03:26', '2025-01-29 12:37:36'),
+(13, 'Sabbir', 'Hossain', '2001-01-31', 1762164746, 1, 'Uttara, Dhaka-1230', 'sabbir76@gmail.com', 'A321678', 'BGD', 'DIP/DHAKA', '123654789', 'Gazipur', '2022-01-31', '2032-01-31', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Gazipur', '1546235897', 14, 1000000, 100000, 9, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 04:03:36', '2025-01-29 04:03:36'),
+(14, 'Emon', 'Hossain', '2001-12-01', 1732564875, 1, 'Narshingdhi, Dhaka', 'emon@gmail.com', 'A326458', 'BGD', 'DIP/DHAKA', '321654987', 'Narshingdhi', '2025-01-01', '2035-01-29', 'Amir Hossain', 'Mst. Amina Begum', 'Mst. Amina Begum', '1995-01-01', 'Dhaka', 'Amjad Ali', 'Father', 'Narshingdhi, Dhaka', '123654789', 8, 1350000, 20000, 3, 'Bank', 'DBBL', '123456789', 'N/A', NULL, NULL, NULL, NULL, '2025-01-29 11:11:19', '2025-01-29 11:11:19'),
+(15, 'Shamim', 'Hossain', '2001-12-31', 1533021557, 1, 'Kaliakair, Gazipur, Dhaka', 'samim@gmail.com', 'A654987', 'BGD', 'DIP/DHAKA', '654987321', 'Gazipur', '2025-01-01', '2035-01-29', 'Jamsher Ali', 'Shofiya Begum', NULL, NULL, NULL, 'Jamsher Ali', 'Father', 'Kaliakair, Gazipur, Dhaka', '3216549873', 4, 1000000, 50000, 7, NULL, NULL, NULL, '6 month a visa dibe. other wise taka back dibe.', NULL, NULL, NULL, NULL, '2025-01-29 11:49:40', '2025-01-29 12:33:19');
 
 -- --------------------------------------------------------
 
@@ -360,7 +362,7 @@ ALTER TABLE `agents`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `countries`

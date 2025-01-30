@@ -41,4 +41,5 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/client-view', [ClientController::class, 'client'])->name('client.view');
     Route::get('/add-client', [ClientController::class, 'addClient']);
     Route::get('/update-clients/{id}', [ClientController::class, 'updateClient']);
+    Route::get('//edit-client/{id}', [ClientController::class, 'editClient']);
 });
