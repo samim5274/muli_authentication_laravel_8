@@ -203,9 +203,10 @@
 					        </a><!--//nav-link-->
 					        <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
-							        <li class="submenu-item"><a class="submenu-link" href="notifications.html">Notifications</a></li>
-							        <li class="submenu-item"><a class="submenu-link" href="account.html">Account</a></li>
-							        <li class="submenu-item"><a class="submenu-link" href="settings.html">Settings</a></li>
+							        <li class="submenu-item"><a class="submenu-link" href="#">Diposit</a></li>
+							        <li class="submenu-item"><a class="submenu-link" href="/account-view">Send Money</a></li>
+							        <li class="submenu-item"><a class="submenu-link" href="#">Daily Expenses</a></li>
+							        <li class="submenu-item"><a class="submenu-link" href="#">Report</a></li>
 						        </ul>
 					        </div>
 					    </li><!--//nav-item-->

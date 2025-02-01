@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\AgentController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\ClientController;
+use App\Http\Controllers\Account\AccountController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,4 +43,8 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/add-client', [ClientController::class, 'addClient']);
     Route::get('/update-clients/{id}', [ClientController::class, 'updateClient']);
     Route::get('//edit-client/{id}', [ClientController::class, 'editClient']);
+
+    // account route section
+    Route::get('/account-view', [AccountController::class, 'accountView'])->name('account.view');
+    Route::get('/money-send', [AccountController::class, 'moneySend']);
 });

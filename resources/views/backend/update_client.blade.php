@@ -170,9 +170,10 @@
                                     <label for="">Reference & Account</label><hr>  
                                     <div class="input-group mb-3">                                        
                                         <select name="cbxRefer" class="form-control mt-2" id="Reference">
-                                            <option selected>Select Reference</option>
-                                            @foreach($agents as $row)
-                                            <option value="{{$row->id}}">{{$row->agencyName}}</option>
+                                            <option>Select Reference</option>
+                                            <option selected value="{{$clients->agent->id}}">{{$clients->agent->agencyName}}</option>
+                                            @foreach($agents as $agent)
+                                            <option value="{{$agent->id}}">{{$agent->agencyName}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -187,9 +188,10 @@
                                     <label for="">Country Details</label><hr>
                                     <div class="input-group mb-3">
                                     <select  name="cbxCountry" class="form-control mt-2" id="Reference">
-                                        <option selected>Select country</option>
-                                        @foreach($countrys as $rows)
-                                        <option value="{{$rows->id}}">{{$rows->countryName}}</option>
+                                        <option>Select country</option>
+                                        <option selected value="{{$clients->country->id}}">{{$clients->country->countryName}}</option>
+                                        @foreach($countrys as $country)
+                                        <option value="{{$country->id}}">{{$country->countryName}}</option>
                                         @endforeach
                                         </select>
                                     </div>

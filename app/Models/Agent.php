@@ -18,4 +18,10 @@ class Agent extends Model
         'address',
         'rln',
     ];
+
+    public function clients()
+    {
+        return $this->hasMany(Client::class, 'referid','id');
+    }
+
 }

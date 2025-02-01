@@ -21,6 +21,6 @@ class Country extends Model
 
     public function client()
     {
-        return $this->hasMany(Client::class, 'countryId');
+        return $this->hasMany(Client::class, 'countryId','id');
     }
 }

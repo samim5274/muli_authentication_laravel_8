@@ -12,13 +12,20 @@ class ClientController extends Controller
 {
     public function client()
     {
-        // $agents = Agent::all();
-        // $countrys = Country::all();
+        $agents = Agent::all();
+        $countrys = Country::all();
         // $clients = Client::paginate(8);
-        // $clients = Country::find(3)->client;
-        $clients = Country::with('client')->get();
-        dd($clients);
-        // return view('backend.client', compact('agents','countrys','clients'));
+
+        // relationship query section
+        // $clients = Client::with('country','agent')->get();
+        // $country = Country::with('client')->get();        
+        // $country = Client::with('agent')->get();        
+        // $country = Agent::with('clients')->get();       
+        // return view('textRelation', compact('client'));
+
+        $clients = Client::with('country','agent')->paginate(8);   
+
+        return view('backend.client', compact('agents','countrys','clients'));
     }
 
     public function addClient(Request $request)
@@ -123,7 +130,10 @@ class ClientController extends Controller
     {
         $agents = Agent::all();
         $countrys = Country::all();
-        $clients = Client::find($id);
+        // $clients = Client::find($id);
+
+        $clients = Client::with('country','agent')->find($id);   
+        // dd($clients);     
 
         return view('backend.update_client', compact('agents','countrys','clients'));
     }

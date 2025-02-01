@@ -50,7 +50,12 @@ class Client extends Model
 
     public function country()
     {
-        return $this->belongsTo(Country::class,'id');
+        return $this->belongsTo(Country::class,'countryId','id');
+    }
+
+    public function agent()
+    {
+        return $this->belongsTo(Agent::class,'referid','id');
     }
 
 }
