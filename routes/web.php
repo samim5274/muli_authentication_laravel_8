@@ -47,4 +47,8 @@ Route::group(['middleware'=>'admin'],function(){
     // account route section
     Route::get('/account-view', [AccountController::class, 'accountView'])->name('account.view');
     Route::get('/money-send', [AccountController::class, 'moneySend']);
+    Route::get('/diposit-view', [AccountController::class, 'dipositView'])->name('account.diposit.view');
+    Route::get('/money-diposit', [AccountController::class, 'dipositMoney']);
+    Route::get('/daily-expenses-view', [AccountController::class, 'expensesView'])->name('daily.expenses.view');
+    Route::post('/get.subcategories', [AccountController::class, 'getSubCategories'])->name('get.subcategories');
 });

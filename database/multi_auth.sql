@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2025 at 09:02 PM
+-- Generation Time: Feb 02, 2025 at 07:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,6 +40,22 @@ CREATE TABLE `accounts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `date`, `amount`, `sender_id`, `senderType`, `receiver_id`, `receiverType`, `remark`, `created_at`, `updated_at`) VALUES
+(7, '2025-02-01', 5000, 1, 1, 2, 2, 'N/A', '2025-02-01 11:45:33', '2025-02-01 11:45:33'),
+(8, '2025-02-01', 500, 2, 1, 1, 2, 'N/A', '2025-02-01 11:47:50', '2025-02-01 11:47:50'),
+(11, '2025-02-01', 1000, 2, 1, 1, 2, 'N/A', '2025-02-01 13:15:16', '2025-02-01 13:15:16'),
+(12, '2025-02-01', 1000, 2, 1, 3, 2, 'N/A', '2025-02-01 13:15:29', '2025-02-01 13:15:29'),
+(13, '2025-02-01', 1000, 3, 1, 2, 2, 'N/A', '2025-02-01 13:16:14', '2025-02-01 13:16:14'),
+(14, '2025-02-01', 1000, 2, 1, 1, 2, 'N/A', '2025-02-01 13:33:15', '2025-02-01 13:33:15'),
+(15, '2025-02-01', 1000, 2, 1, 3, 2, 'N/A', '2025-02-01 13:42:14', '2025-02-01 13:42:14'),
+(16, '2025-02-01', 50, 2, 1, 1, 2, 'N/A', '2025-02-01 13:43:06', '2025-02-01 13:43:06'),
+(17, '2025-02-01', 1000, 3, 1, 1, 2, 'N/A', '2025-02-01 13:51:50', '2025-02-01 13:51:50'),
+(18, '2025-02-02', 1000, 2, 1, 1, 2, 'N/A', '2025-02-02 02:16:06', '2025-02-02 02:16:06');
+
 -- --------------------------------------------------------
 
 --
@@ -63,8 +79,8 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'md admin', 'admin@gmail.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, NULL, NULL),
-(2, 'Shamim Hossain', 'samim@gamil.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, NULL, NULL),
-(3, 'Sabbir Hossain', 'sabbir@gamil.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, NULL, NULL);
+(2, 'Shamim Hossain', 'samim@gmail.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, NULL, NULL),
+(3, 'Sabbir Hossain', 'sabbir@gmail.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -206,6 +222,27 @@ INSERT INTO `countries` (`id`, `countryName`, `clientCost`, `clientAdvance`, `ag
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ex_categories`
+--
+
+CREATE TABLE `ex_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `CatName` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ex_categories`
+--
+
+INSERT INTO `ex_categories` (`id`, `CatName`, `created_at`, `updated_at`) VALUES
+(1, 'Electronics', NULL, NULL),
+(2, 'Clothing', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -244,7 +281,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2025_01_26_172246_create_agents_table', 3),
 (14, '2025_01_28_172915_create_countries_table', 4),
 (15, '2025_01_29_061558_create_clients_table', 5),
-(16, '2025_01_31_093357_create_accounts_table', 6);
+(16, '2025_01_31_093357_create_accounts_table', 6),
+(17, '2025_02_02_173659_create_ex_categories_table', 7),
+(18, '2025_02_02_173729_create_sub_ex_categories_table', 7);
 
 -- --------------------------------------------------------
 
@@ -275,6 +314,30 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sub_ex_categories`
+--
+
+CREATE TABLE `sub_ex_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_Id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sub_ex_categories`
+--
+
+INSERT INTO `sub_ex_categories` (`id`, `category_Id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Mobile Phones', NULL, NULL),
+(2, 2, 'Shirts', NULL, NULL),
+(3, 1, 'Laptops', NULL, NULL),
+(4, 2, 'Jeans', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -338,6 +401,12 @@ ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ex_categories`
+--
+ALTER TABLE `ex_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -365,6 +434,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `sub_ex_categories`
+--
+ALTER TABLE `sub_ex_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -379,7 +454,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `admins`
@@ -406,6 +481,12 @@ ALTER TABLE `countries`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `ex_categories`
+--
+ALTER TABLE `ex_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -415,13 +496,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sub_ex_categories`
+--
+ALTER TABLE `sub_ex_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

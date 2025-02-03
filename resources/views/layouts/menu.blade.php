@@ -125,7 +125,7 @@
 								<li><a class="dropdown-item" href="account.html">Account</a></li>
 								<li><a class="dropdown-item" href="settings.html">Settings</a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="login.html">Log Out</a></li>
+								<li><a class="dropdown-item" href="/admin/logout">Log Out</a></li>
 							</ul>
 			            </div><!--//app-user-dropdown--> 
 		            </div><!--//app-utilities-->
@@ -203,9 +203,9 @@
 					        </a><!--//nav-link-->
 					        <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
-							        <li class="submenu-item"><a class="submenu-link" href="#">Diposit</a></li>
+							        <li class="submenu-item"><a class="submenu-link" href="/diposit-view">Diposit</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="/account-view">Send Money</a></li>
-							        <li class="submenu-item"><a class="submenu-link" href="#">Daily Expenses</a></li>
+							        <li class="submenu-item"><a class="submenu-link" href="daily-expenses-view">Daily Expenses</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="#">Report</a></li>
 						        </ul>
 					        </div>
@@ -228,7 +228,7 @@
 					        </a><!--//nav-link-->
 					        <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
-							        <li class="submenu-item"><a class="submenu-link" href="login.html">Login</a></li>
+							        <li class="submenu-item"><a class="submenu-link" href="/admin/logout">Login</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="signup.html">Signup</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="reset-password.html">Reset password</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="404.html">404 page</a></li>

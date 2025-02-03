@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Country;
+use App\Models\Account;
 
 class Client extends Model
 {
@@ -56,6 +57,16 @@ class Client extends Model
     public function agent()
     {
         return $this->belongsTo(Agent::class,'referid','id');
+    }
+
+    public function receiver()
+    {
+        return $this->hasMany(Account::class, 'receiver_id','id');
+    }
+
+    public function sender()
+    {
+        return $this->hasMany(Account::class, 'sender_id','id');
     }
 
 }

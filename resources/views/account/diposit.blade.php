@@ -67,7 +67,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
                                 <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
                                 <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2z"/>
-                                </svg> Make Transection</button>
+                                </svg> Make Diposit</button>
                         </div>
                     </div>
                 </div>
@@ -78,11 +78,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="transactionModalLabel">Money Transaction</h5>
+                    <h5 class="modal-title" id="transactionModalLabel">Money Diposit</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/money-send" method="GET">
+                    <form action="/money-diposit" method="GET">
                         <div class="mb-3">
                             <label for="sender" class="form-label">Account</label>
                             <select class="form-select" name="cbxAccount" id="transactionType" required>
@@ -104,63 +104,13 @@
                             <label for="password" class="form-label">Password</label>
                             <input type="password" name="txtPassword" class="form-control" id="password" placeholder="Enter password" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Send</button>
+                        <button type="submit" class="btn btn-primary w-100">Diposit</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-            <div class="container-xl">
-                <div class="row g-4 mb-4">
-                    <div class="col-lg-12 col-lg-6 " >
-                        <div class="app-card app-card-stat shadow-sm h-100">
-                            <div class="app-card-body p-3 p-lg-4 " >
-                                <h4 class="stats-type mb-1">Transection Statement</h4>
-                                <div class="app-card shadow-sm h-100">
-                                    <div class="app-card-body p-3 p-lg-4">
-                                        <table class="table table-bordered border-success">
-                                            <thead>
-                                                <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">To</th>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Amount</th>
-                                                <th scope="col" colspan="2">Remark</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($accounts as $i => $row)
-                                            <tr>
-                                                <th scope="row" class="text-center">{{++$i}}</th>
-                                                <td>{{$row->sender->name}}</td>
-                                                <td>{{$row->date}}</td>
-                                                <td>${{$row->amount}}/-</td>
-                                                <!-- <td>{{Str::limit($row->remark, 10)}}</td> -->
-                                                <td>@if($row->receiver->id == $senderId){{'Debit'}}@elseif($row->sender->id == $senderId){{'credit'}}@endif</td>
-                                                <!-- <td class="p-2 text-center"><a href="{{url('/update-clients/'.$row->id)}}"> -->
-                                                <td class="p-2 text-center"><a href="#">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                                                </svg></a></td>
-                                            </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-                                        <div class="pagination pt-4">
-                                            1 of 1
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-
-        
 
         @include('layouts.footer')
     </div>
