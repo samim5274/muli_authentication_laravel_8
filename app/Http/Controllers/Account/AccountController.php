@@ -124,9 +124,9 @@ class AccountController extends Controller
         return view('account.dailyExpenses', compact('categories'));
     }
 
-    public function getSubCategories(Request $request)
+    public function getSubCategory(Request $request, $id)
     {
-        $subCategories = SubExCategory::where('categoy_Id', $request->category_Id)->get();
-        return response()->json($subCategories);
+        $subCategory = SubExCategory::where('category_Id', $id)->get();
+        return response()->json(['subCategory'=>$subCategory]);
     }
 }
