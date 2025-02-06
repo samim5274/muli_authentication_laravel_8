@@ -49,7 +49,10 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/money-send', [AccountController::class, 'moneySend']);
     Route::get('/diposit-view', [AccountController::class, 'dipositView'])->name('account.diposit.view');
     Route::get('/money-diposit', [AccountController::class, 'dipositMoney']);
+
+    // daily expense section
     Route::get('/daily-expenses-view', [AccountController::class, 'expensesView'])->name('daily.expenses.view');
     Route::get('/getSubCategory/{id}', [AccountController::class, 'getSubCategory']);
     Route::get('/daily-expenses-insert', [AccountController::class, 'addDailyExpenses']);
+    Route::get('/expenses-status/{id}', [AccountController::class, 'expensesStatus']);
 });

@@ -161,4 +161,10 @@ class AccountController extends Controller
         $expenses->save();
         return redirect()->back()->with('success','Daily expeses submited successfully.');
     }
+
+    public function expensesStatus(Request $request, $id)
+    {
+        $status = Expenses::where('id', $id)->get();
+        return view('account.expensesStatus', compact('status'));
+    }
 }

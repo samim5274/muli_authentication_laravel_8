@@ -11,7 +11,7 @@
     <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
     <link rel="shortcut icon" href="favicon.ico">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- FontAwesome JS-->
     <script defer src="/assets/plugins/fontawesome/js/all.min.js"></script>
 
@@ -175,14 +175,15 @@
                                         <td>{{$row->exreceived->name}}</td>
                                         <td>${{$row->amount}}/-</td>
                                         @if($row->status == 1)
-                                        <td>Submited</td>
+                                        <td class="text-light bg-info">Submited</td>
                                         @elseif($row->status == 2)
-                                        <td>Processing</td>
+                                        <td class="bg-warning">Processing</td>
                                         @elseif($row->status == 3)
-                                        <td>Approve</td>
+                                        <td class="text-light bg-success">Approve</td>
+                                        @elseif($row->status == 4)
+                                        <td class="text-light bg-danger">Rejected</td>
                                         @endif
-                                        <!-- <td class="p-2 text-center"><a href="{{url('/update-clients/'.$row->id)}}"> -->
-                                        <td class="p-2 text-center"><a href="#">
+                                        <td class="p-2 text-center"><a href="{{url('/expenses-status/'.$row->id)}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
