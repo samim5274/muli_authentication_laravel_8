@@ -9,6 +9,7 @@ use App\Models\Account;
 use App\Models\Admin;
 use App\Models\ExCategory;
 use App\Models\SubExCategory;
+use App\Models\Expenses;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,7 +20,7 @@ class AccountController extends Controller
         $senderId = Auth::guard('admin')->user()->id;
 
         // $accounts = Account::where('date', date('Y-m-d'))->where('receiver_id',$senderId )->get();
-        $accounts = Account::with('receiver','sender')->where('receiver_id', $senderId)->get();
+        $accounts = Account::with('receiver','sender')->where('receiver_id', $senderId)->paginate(8);
 
         $admins = Admin::all();        
 
@@ -119,14 +120,45 @@ class AccountController extends Controller
 
     public function expensesView()
     {
+        $expenses = Expenses::with('exsend','exreceived','excategory','exsubcategory')->where('date', date('Y-m-d'))->paginate(8);
         $categories = ExCategory::all();
-        // dd($categories);
-        return view('account.dailyExpenses', compact('categories'));
+        $admins = Admin::all(); 
+        $total = Expenses::where('date', date('Y-m-d'))->sum('amount');
+        return view('account.dailyExpenses', compact('expenses','categories','admins','total'));
     }
 
     public function getSubCategory(Request $request, $id)
     {
         $subCategory = SubExCategory::where('category_Id', $id)->get();
         return response()->json(['subCategory'=>$subCategory]);
+    }
+
+    public function addDailyExpenses(Request $request)
+    {
+        $expenses = new Expenses();
+        
+        $request->validate([
+            'cbxAccount' => 'required',
+            'txtAmount' => 'required',
+            'category' => 'required',
+            'subcategory' => 'required',
+            'txtRemark' => 'required',
+        ]);
+
+        $sl = Expenses::where('date', date('Y-m-d'))->count();
+        $senderId = Auth::guard('admin')->user()->id;
+        
+        $expenses->date = date('Y-m-d');
+        $expenses->invoice = date('Ymd').$sl+1;
+        $expenses->sender_id = $senderId;
+        $expenses->receiver_id = $request->has('cbxAccount')? $request->get('cbxAccount'):'';
+        $expenses->category_id = $request->has('category')? $request->get('category'):'';
+        $expenses->subCategory_id = $request->has('subcategory')? $request->get('subcategory'):'';
+        $expenses->amount = $request->has('txtAmount')? $request->get('txtAmount'):'';
+        $expenses->remark = $request->has('txtRemark')? $request->get('txtRemark'):'';
+        $expenses->status = 1;
+
+        $expenses->save();
+        return redirect()->back()->with('success','Daily expeses submited successfully.');
     }
 }

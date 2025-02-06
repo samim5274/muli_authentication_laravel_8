@@ -149,7 +149,7 @@
                                             </tbody>
                                         </table>
                                         <div class="pagination pt-4">
-                                            1 of 1
+                                            {{ $accounts->onEachSide(1)->links() }}
                                         </div>
                                     </div>
                                 </div>

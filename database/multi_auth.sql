@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2025 at 07:52 PM
+-- Generation Time: Feb 06, 2025 at 11:02 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -222,6 +222,42 @@ INSERT INTO `countries` (`id`, `countryName`, `clientCost`, `clientAdvance`, `ag
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `expenses`
+--
+
+CREATE TABLE `expenses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `invoice` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `subCategory_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `remark` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`id`, `date`, `invoice`, `sender_id`, `receiver_id`, `category_id`, `subCategory_id`, `amount`, `remark`, `status`, `created_at`, `updated_at`) VALUES
+(1, '2025-02-06', 202502061, 2, 1, 1, 1, 1000, 'N/A', 1, '2025-02-06 03:33:18', '2025-02-06 03:33:18'),
+(2, '2025-02-06', 202502062, 2, 3, 2, 2, 250, 'N/A', 1, '2025-02-06 03:33:26', '2025-02-06 03:33:26'),
+(3, '2025-02-06', 202502063, 2, 1, 1, 3, 1000, 'N/A', 1, '2025-02-06 03:35:20', '2025-02-06 03:35:20'),
+(4, '2025-02-06', 202502064, 2, 2, 2, 2, 1000, 'N/A', 1, '2025-02-06 03:35:26', '2025-02-06 03:35:26'),
+(5, '2025-02-06', 202502065, 2, 1, 1, 1, 1000, 'N/A', 1, '2025-02-06 03:35:32', '2025-02-06 03:35:32'),
+(6, '2025-02-06', 202502066, 2, 2, 1, 1, 1000, 'N/A', 1, '2025-02-06 03:35:39', '2025-02-06 03:35:39'),
+(7, '2025-02-06', 202502067, 2, 1, 1, 3, 1000, 'N/A', 1, '2025-02-06 03:35:45', '2025-02-06 03:35:45'),
+(8, '2025-02-06', 202502068, 2, 3, 2, 4, 1000, 'N/A', 1, '2025-02-06 03:36:01', '2025-02-06 03:36:01'),
+(9, '2025-02-06', 202502069, 2, 1, 1, 1, 1000, 'N/A', 1, '2025-02-06 03:36:07', '2025-02-06 03:36:07');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ex_categories`
 --
 
@@ -283,7 +319,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2025_01_29_061558_create_clients_table', 5),
 (16, '2025_01_31_093357_create_accounts_table', 6),
 (17, '2025_02_02_173659_create_ex_categories_table', 7),
-(18, '2025_02_02_173729_create_sub_ex_categories_table', 7);
+(18, '2025_02_02_173729_create_sub_ex_categories_table', 7),
+(21, '2025_02_06_071512_create_expenses_table', 8);
 
 -- --------------------------------------------------------
 
@@ -401,6 +438,12 @@ ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `expenses`
+--
+ALTER TABLE `expenses`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ex_categories`
 --
 ALTER TABLE `ex_categories`
@@ -481,6 +524,12 @@ ALTER TABLE `countries`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `expenses`
+--
+ALTER TABLE `expenses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `ex_categories`
 --
 ALTER TABLE `ex_categories`
@@ -496,7 +545,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

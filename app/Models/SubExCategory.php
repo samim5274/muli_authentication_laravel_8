@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ExCategory;
+use App\Models\Expenses;
 
 class SubExCategory extends Model
 {
@@ -15,5 +16,10 @@ class SubExCategory extends Model
     public function category()
     {
         return $this->belongsTo(SubCategory::class,'category_Id','id');
+    }
+
+    public function exsubcategory()
+    {
+        return $this->hasMany(Expenses::class,'subCategory_id','id');
     }
 }

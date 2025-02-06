@@ -51,4 +51,5 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/money-diposit', [AccountController::class, 'dipositMoney']);
     Route::get('/daily-expenses-view', [AccountController::class, 'expensesView'])->name('daily.expenses.view');
     Route::get('/getSubCategory/{id}', [AccountController::class, 'getSubCategory']);
+    Route::get('/daily-expenses-insert', [AccountController::class, 'addDailyExpenses']);
 });
