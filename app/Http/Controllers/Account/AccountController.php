@@ -118,12 +118,15 @@ class AccountController extends Controller
         return redirect()->back()->with('error', 'Diposit section working in progress. It will be work very soon. Please wait & Thank you!');
     }
 
+
+    /////////////////////////// expenses backend section ///////////////////////////////////////
+
     public function expensesView()
     {
-        $expenses = Expenses::with('exsend','exreceived','excategory','exsubcategory')->where('date', date('Y-m-d'))->paginate(8);
+        $expenses = Expenses::with('exsend','exreceived','excategory','exsubcategory')->whereDate('date', date('Y-m-d'))->paginate(8);
         $categories = ExCategory::all();
         $admins = Admin::all(); 
-        $total = Expenses::where('date', date('Y-m-d'))->sum('amount');
+        $total = Expenses::where('date', date('Y-m-d'))->where('status', 3)->sum('amount');
         return view('account.dailyExpenses', compact('expenses','categories','admins','total'));
     }
 
@@ -164,7 +167,16 @@ class AccountController extends Controller
 
     public function expensesStatus(Request $request, $id)
     {
-        $status = Expenses::where('id', $id)->get();
+        $status = Expenses::with('exsend','exreceived','excategory','exsubcategory')->where('id', $id)->first();
+        // dd($status);
         return view('account.expensesStatus', compact('status'));
+    }
+
+    public function UpdateexpensesStatus(Request $request, $id)
+    {
+        $exstatus = Expenses::find($id);
+        $exstatus->status = $request->has('cbxExpensesStatus')? $request->get('cbxExpensesStatus'):'';
+        $exstatus->update();
+        return redirect('/daily-expenses-view')->with('success','Daily expeses status updated successfully.');
     }
 }

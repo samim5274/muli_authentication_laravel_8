@@ -55,4 +55,5 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/getSubCategory/{id}', [AccountController::class, 'getSubCategory']);
     Route::get('/daily-expenses-insert', [AccountController::class, 'addDailyExpenses']);
     Route::get('/expenses-status/{id}', [AccountController::class, 'expensesStatus']);
+    Route::get('/updated-expenses/{id}', [AccountController::class, 'UpdateexpensesStatus']);
 });

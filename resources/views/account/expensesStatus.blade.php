@@ -68,35 +68,55 @@
 </section><br>
 
         <div class="container-xl " >
-            <h1 class="app-page-title">Expenses Status</h1>
+            <h1 class="app-page-title">Expenses Status: INV-{{$status->invoice}}</h1>
             <div class="row g-4 mb-4">
                 <div class="col-lg-12 col-lg-6">
                     <div class="app-card shadow-sm h-100">
                         <div class="app-card-body p-3 p-lg-4 " >
-                            <form action="#" method="GET">
+                            <form action="{{url('/updated-expenses/'.$status->id)}}" method="GET">
                                 <div class="mb-3">
-                                    <label for="sender" class="form-label">Account</label>
-                                    <input type="number" value="" name="txtAmount" class="form-control" id="amount" placeholder="Enter account number" required>
+                                    <label for="sender" class="form-label">Account: {{$status->exreceived->name}}</label>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="amount" class="form-label">Amount</label>
-                                    <input type="number" value="" name="txtAmount" class="form-control" id="amount" placeholder="Enter amount" required>
+                                    <label for="category" class="form-label">Category: {{$status->excategory->CatName}}</label>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="remark" class="form-label">Remark</label>
-                                    <textarea class="form-control" name="txtRemark" id="remark" rows="2"  placeholder="Enter remark"></textarea>
+                                    <label for="subcategory" class="form-label">Sub-Category: {{$status->exsubcategory->name}}</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="amount" class="form-label">Amount: {{$status->amount}}</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="remark" class="form-label">Remark: {{$status->remark}}</label>
                                 </div>
                                 <div class="mb-3">
                                     <label for="Status" class="form-label">Status</label>
-                                    <select class="form-select" name="cbxAccount" id="Status" required>
-                                        <option selected disabled>Select account</option>
-                                        <option value="1">Submited</option>
+                                    <select class="form-select" name="cbxExpensesStatus" id="Status" required>
+                                        <option selected disabled>--Select Status--</option>
+                                        @if($status->status == 1)
+                                        <option selected value="1">Submited</option>
                                         <option value="2">Processing</option>
                                         <option value="3">Approved</option>
                                         <option value="4">Rejected</option>
+                                        @elseif($status->status == 2)
+                                        <option value="1">Submited</option>
+                                        <option selected value="2">Processing</option>
+                                        <option value="3">Approved</option>
+                                        <option value="4">Rejected</option>
+                                        @elseif($status->status == 3)
+                                        <option value="1">Submited</option>
+                                        <option value="2">Processing</option>
+                                        <option selected value="3">Approved</option>
+                                        <option value="4">Rejected</option>
+                                        @elseif($status->status == 4)
+                                        <option value="1">Submited</option>
+                                        <option value="2">Processing</option>
+                                        <option value="3">Approved</option>
+                                        <option selected value="4">Rejected</option>
+                                        @endif
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-primary w-100">Send</button>
+                                <button type="submit" class="btn btn-primary w-100">Update</button>
                             </form>
                         </div>
                     </div>
