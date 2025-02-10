@@ -216,8 +216,73 @@ class ClientController extends Controller
         // $clients->payMathod = $request->has('cbxPMethod') ? $request->get('cbxPMethod') : '';
         // $clients->payBankName = $request->has('txtPBankName') ? $request->get('txtPBankName') : '';
         // $clients->payAccountNum = $request->has('txtPAccountNum') ? $request->get('txtPAccountNum') : '';
-        $clients->remark = $request->has('txtRemark') ? $request->get('txtRemark') : '';
 
+        if($request->has('facePhoto'))
+        {
+            $files = $request->file('facePhoto');
+            $Imagelocation = array();
+            $i=0;
+            foreach($files as $file)
+            {
+                $extention = $file->getClientOriginalExtension();
+                $fileName = 'face-'. time() . ++$i .'.'.$extention;
+                $location = '/images/clients/';
+                $file->move(public_path() . $location, $fileName);
+                $Imagelocation[] = $location . $fileName;
+                $clients->pImg = $fileName;
+            }
+        }
+
+        if($request->has('PassportPhoto'))
+        {
+            $files = $request->file('PassportPhoto');
+            $Imagelocation = array();
+            $i=0;
+            foreach($files as $file)
+            {
+                $extention = $file->getClientOriginalExtension();
+                $fileName = 'pass-'. time() . ++$i .'.'.$extention;
+                $location = '/images/clients/';
+                $file->move(public_path() . $location, $fileName);
+                $Imagelocation[] = $location . $fileName;
+                $clients->passImg = $fileName;
+            }
+        }
+
+        if($request->has('NIDPhoto'))
+        {
+            $files = $request->file('NIDPhoto');
+            $Imagelocation = array();
+            $i=0;
+            foreach($files as $file)
+            {
+                $extention = $file->getClientOriginalExtension();
+                $fileName = 'NID-'. time() . ++$i .'.'.$extention;
+                $location = '/images/clients/';
+                $file->move(public_path() . $location, $fileName);
+                $Imagelocation[] = $location . $fileName;
+                $clients->nidImg = $fileName;
+            }
+        }
+
+        if($request->has('SpouseNID'))
+        {
+            $files = $request->file('SpouseNID');
+            $Imagelocation = array();
+            $i=0;
+            foreach($files as $file)
+            {
+                $extention = $file->getClientOriginalExtension();
+                $fileName = 'spouse-'. time() . ++$i .'.'.$extention;
+                $location = '/images/clients/';
+                $file->move(public_path() . $location, $fileName);
+                $Imagelocation[] = $location . $fileName;
+                $clients->sNidImg = $fileName;
+            }
+        }
+
+        $clients->remark = $request->has('txtRemark') ? $request->get('txtRemark') : '';
+        
         $clients->update();
         return redirect()->route('client.view')->with('success', 'Client updated successfully');
     }

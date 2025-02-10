@@ -46,7 +46,6 @@ class CountryController extends Controller
 
             $countryData->save();
             return redirect()->route('country.Admin')->with('success', 'Country added data successfully.');
-            
         }
     }
 

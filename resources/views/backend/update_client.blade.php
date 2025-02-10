@@ -18,6 +18,35 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="/assets/css/portal.css">
 
+    <style>
+        .image-preview {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            object-fit: cover;
+            display: none;
+            margin-top: 10px;
+            border: 2px solid #ddd;
+            padding: 5px;
+        }
+        .image-preview2 {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-top: 10px;
+            border: 2px solid #ddd;
+            padding: 5px;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    </style>
+
 </head> 
 
 <body class="app"> 
@@ -51,7 +80,8 @@
             <div class="">
                 <div class="app-card app-card-stat shadow-sm h-100">
                     <div class="app-card-body p-3 p-lg-4">
-                        <form action="{{url('/edit-client/'.$clients->id)}}" method="GET" enctype="multipart/form-data">                    
+                        <form action="{{url('/edit-client/'.$clients->id)}}" method="POST" enctype="multipart/form-data">
+                            @csrf                    
                             <div class="row">
                                 <div class="col-12 col-lg-6">
                                     <label for="">Personal Information</label><hr>
@@ -170,10 +200,12 @@
                                     <label for="">Reference & Account</label><hr>  
                                     <div class="input-group mb-3">                                        
                                         <select name="cbxRefer" class="form-control mt-2" id="Reference">
-                                            <option>Select Reference</option>
-                                            <option selected value="{{$clients->agent->id}}">{{$clients->agent->agencyName}}</option>
+                                            <option value="">--Select Reference--</option>
                                             @foreach($agents as $agent)
-                                            <option value="{{$agent->id}}">{{$agent->agencyName}}</option>
+                                                <option value="{{ $agent->id }}" 
+                                                    @if(isset($clients) && $clients->referid == $agent->id) selected @endif>
+                                                    {{ $agent->agencyName }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -187,19 +219,67 @@
                                     </div>
                                     <label for="">Country Details</label><hr>
                                     <div class="input-group mb-3">
-                                    <select  name="cbxCountry" class="form-control mt-2" id="Reference">
-                                        <option>Select country</option>
-                                        <option selected value="{{$clients->country->id}}">{{$clients->country->countryName}}</option>
-                                        @foreach($countrys as $country)
-                                        <option value="{{$country->id}}">{{$country->countryName}}</option>
-                                        @endforeach
+                                        <select name="cbxCountry" class="form-control mt-2" id="Reference">
+                                            <option value="">--Select country--</option>
+                                            @foreach($countrys as $country)
+                                                <option value="{{ $country->id }}" 
+                                                    @if(isset($clients) && $clients->countryId == $country->id) selected @endif>
+                                                    {{ $country->countryName }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
-                                </div>                
+                                </div>     <hr>  
+                                <div class="container my-2">
+                                    <h3 class="mb-3">Upload Images</h3>
+                                    <div class="row">
+                                        <div class="col-md-3 col-6">
+                                            <label for="imageInput1" class="form-label">{{$clients->firstName}} Photo</label>
+                                            <input type="file" name="facePhoto[]" class="form-control" id="imageInput1" accept="image/*">
+                                            <img id="imagePreview1" class="image-preview">                                          
+                                        </div>
+                                        <div class="col-md-3 col-6">
+                                            <label for="imageInput2"  class="form-label">Passport</label>
+                                            <input type="file" name="PassportPhoto[]" class="form-control" id="imageInput2" accept="image/*">
+                                            <img id="imagePreview2" class="image-preview">
+                                        </div>
+                                        <div class="col-md-3 col-6">
+                                            <label for="imageInput3" class="form-label"> NID</label>
+                                            <input type="file"  name="NIDPhoto[]" class="form-control" id="imageInput3" accept="image/*">
+                                            <img id="imagePreview3" class="image-preview">
+                                        </div>
+                                        <div class="col-md-3 col-6">
+                                            <label for="imageInput4"  class="form-label">Spouse NID</label>
+                                            <input type="file" name="SpouseNID[]" class="form-control" id="imageInput4" accept="image/*">
+                                            <img id="imagePreview4" class="image-preview">
+                                        </div>
+                                    </div>
+                                </div>    
                             </div>
-                            <button class="btn btn-success text-light mb-3" role="button" name="btnSubmit">Submite</button>
+                            <button class="btn btn-success text-light m-3" role="button" name="btnSubmit">Submite</button>
                         </form>
                     </div>
+                    <div class="container my-2">
+                        <h3 class="mb-3">File's</h3>
+                        <div class="row">
+                            <div class="col-md-3 col-6">
+                                <label for="imageInput1" class="form-label">{{$clients->firstName}} Photo</label>
+                                <img width="150" class="image-preview2" src="{{asset('/images/clients/'.$clients->pImg)}}" alt="Personal Photo">  
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <label for="imageInput2"  class="form-label">Passport</label>
+                                <img width="150" class="image-preview2" src="{{asset('/images/clients/'.$clients->passImg)}}" alt="Passport Photo">  
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <label for="imageInput3" class="form-label"> NID</label>
+                                <img width="150" class="image-preview2" src="{{asset('/images/clients/'.$clients->nidImg)}}" alt="NID Photo">  
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <label for="imageInput4"  class="form-label">Spouse NID</label>
+                                <img width="150" class="image-preview2" src="{{asset('/images/clients/'.$clients->sNidImg)}}" alt="Spouse NID">  
+                            </div>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -208,7 +288,7 @@
 </div>
 @include('layouts.footer')
 
- 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Javascript -->          
 <script src="/assets/plugins/popper.min.js"></script>
 <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
@@ -219,6 +299,28 @@
 
 <!-- Page Specific JS -->
 <script src="/assets/js/app.js"></script> 
+
+<script>
+    function previewImage(inputId, previewId) {
+        document.getElementById(inputId).addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById(previewId);
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    previewImage('imageInput1', 'imagePreview1');
+    previewImage('imageInput2', 'imagePreview2');
+    previewImage('imageInput3', 'imagePreview3');
+    previewImage('imageInput4', 'imagePreview4');
+</script>
 
 </body>
 </html> 
