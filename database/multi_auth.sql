@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2025 at 12:38 PM
+-- Generation Time: Feb 11, 2025 at 12:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -80,7 +80,10 @@ CREATE TABLE `admins` (
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'md admin', 'admin@gmail.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, NULL, NULL),
 (2, 'Shamim Hossain', 'samim@gmail.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, NULL, NULL),
-(3, 'Sabbir Hossain', 'sabbir@gmail.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, NULL, NULL);
+(3, 'Sabbir Hossain', 'sabbir@gmail.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, NULL, NULL),
+(4, 'Aklima Akter', 'aklima@gmail.com', NULL, '$2y$10$tMZExm9X0VYdUoScMjp1B.yQ/uXpm8LLdNhUi48mejtgiMKIpFqXW', NULL, '2025-02-11 08:13:26', '2025-02-11 08:13:26'),
+(5, 'Taslima Akter Eity', 'taslima@gmail.com', NULL, '$2y$10$hVEiGWd9Hc0Tge3tsrJjDOiW3AWns4RoTLSkrs5fiLpZoQdrTy0tC', NULL, '2025-02-11 08:16:39', '2025-02-11 08:16:39'),
+(6, 'Mimi Akter', 'mimi@gmail.com', NULL, '$2y$10$2X.RrBjSvOd1MlL.QhpZDeUX48A3YUqixZPS5UIw.9.BHLLcBVSpu', NULL, '2025-02-11 08:17:18', '2025-02-11 08:17:18');
 
 -- --------------------------------------------------------
 
@@ -257,7 +260,18 @@ INSERT INTO `expenses` (`id`, `date`, `invoice`, `sender_id`, `receiver_id`, `ca
 (10, '2025-02-10', 202502101, 1, 3, 2, 4, 1000, 'N/A', 1, '2025-02-10 06:32:39', '2025-02-10 06:32:39'),
 (11, '2025-02-10', 202502102, 1, 1, 1, 1, 1000, 'N/A', 4, '2025-02-10 06:32:45', '2025-02-10 06:33:27'),
 (12, '2025-02-10', 202502103, 1, 3, 1, 1, 1000, 'N/A', 3, '2025-02-10 06:33:06', '2025-02-10 06:33:19'),
-(13, '2025-02-10', 202502104, 1, 3, 1, 3, 1000, 'N/A', 2, '2025-02-10 11:06:26', '2025-02-10 11:06:31');
+(13, '2025-02-10', 202502104, 1, 3, 1, 3, 1000, 'N/A', 2, '2025-02-10 11:06:26', '2025-02-10 11:06:31'),
+(14, '2025-02-11', 202502111, 1, 2, 1, 3, 1000, 'N/A', 4, '2025-02-11 07:36:09', '2025-02-11 10:42:48'),
+(15, '2025-02-11', 202502112, 1, 3, 2, 2, 1000, 'N/A', 2, '2025-02-11 07:36:15', '2025-02-11 10:26:03'),
+(16, '2025-02-11', 202502113, 4, 4, 1, 3, 120, 'N/A', 3, '2025-02-11 08:14:42', '2025-02-11 10:26:08'),
+(17, '2025-02-11', 202502114, 6, 6, 1, 1, 100, 'N/A', 1, '2025-02-11 08:18:05', '2025-02-11 10:09:29'),
+(18, '2025-02-11', 202502115, 1, 1, 2, 2, 1000, 'N/A', 3, '2025-02-11 09:58:10', '2025-02-11 10:42:52'),
+(19, '2025-02-11', 202502116, 1, 6, 1, 1, 1000, 'N/A', 1, '2025-02-11 09:58:28', '2025-02-11 10:42:57'),
+(20, '2025-02-11', 202502117, 1, 4, 1, 3, 1000, 'N/A', 2, '2025-02-11 09:58:34', '2025-02-11 10:56:38'),
+(21, '2025-02-11', 202502118, 1, 3, 1, 3, 1000, 'N/A', 4, '2025-02-11 09:58:41', '2025-02-11 10:43:01'),
+(22, '2025-02-11', 202502119, 1, 4, 2, 4, 1000, 'N/A', 2, '2025-02-11 09:58:47', '2025-02-11 10:01:38'),
+(23, '2025-02-11', 2025021110, 1, 6, 1, 3, 750, 'N/A', 4, '2025-02-11 10:37:39', '2025-02-11 10:43:44'),
+(24, '2025-02-11', 2025021111, 1, 5, 2, 2, 250, 'N/A', 3, '2025-02-11 10:37:54', '2025-02-11 10:43:14');
 
 -- --------------------------------------------------------
 
@@ -402,7 +416,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'user1', 'user1@gmail.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, '2025-01-24 09:03:15', '2025-01-24 09:03:15');
+(1, 'user1', 'user1@gmail.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, '2025-01-24 09:03:15', '2025-01-24 09:03:15'),
+(2, 'eity', 'eity@gmail.com', NULL, '$2y$10$Gef6vWLZHvjvyuB.AaxSy.4GNO63d0SgpxJ4VNZwqhRCHi9yWGp5.', NULL, '2025-02-11 09:33:36', '2025-02-11 09:33:36');
 
 --
 -- Indexes for dumped tables
@@ -507,7 +522,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `agents`
@@ -531,7 +546,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `ex_categories`
@@ -567,7 +582,7 @@ ALTER TABLE `sub_ex_categories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

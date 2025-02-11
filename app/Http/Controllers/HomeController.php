@@ -28,4 +28,9 @@ class HomeController extends Controller
         $username = Auth::user()->name;
         return view('home', compact('userid','username'));
     }
+
+    public function expenses()
+    {
+        return view('expenses');
+    }
 }

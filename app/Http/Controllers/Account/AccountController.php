@@ -12,6 +12,7 @@ use App\Models\SubExCategory;
 use App\Models\Expenses;
 use Auth;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class AccountController extends Controller
 {
@@ -119,15 +120,32 @@ class AccountController extends Controller
     }
 
 
-    /////////////////////////// expenses backend section ///////////////////////////////////////
+    ////////////////////////////////////////////////////////////// expenses backend section //////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////// expenses backend section //////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////// expenses backend section //////////////////////////////////////////////////////////////////
+
 
     public function expensesView()
     {
         $expenses = Expenses::with('exsend','exreceived','excategory','exsubcategory')->whereDate('date', date('Y-m-d'))->paginate(8);
+
+        $expensesstatusSubmited = Expenses::with('exsend','exreceived','excategory','exsubcategory')->where('status',1)->whereDate('date', date('Y-m-d'))->paginate(8);
+        $expensesstatusPaid = Expenses::with('exsend','exreceived','excategory','exsubcategory')->where('status',3)->whereDate('date', date('Y-m-d'))->paginate(8);
+        $expensesstatusProcessing = Expenses::with('exsend','exreceived','excategory','exsubcategory')->where('status',2)->whereDate('date', date('Y-m-d'))->paginate(8);
+        $expensesstatusReject = Expenses::with('exsend','exreceived','excategory','exsubcategory')->where('status',4)->whereDate('date', date('Y-m-d'))->paginate(8);
+
         $categories = ExCategory::all();
         $admins = Admin::all(); 
-        $total = Expenses::where('date', date('Y-m-d'))->where('status', 3)->sum('amount');
-        return view('account.dailyExpenses', compact('expenses','categories','admins','total'));
+
+        $totalSubmit = Expenses::where('date', date('Y-m-d'))->where('status', 1)->sum('amount');
+        $totalPending = Expenses::where('date', date('Y-m-d'))->where('status', 2)->sum('amount');
+        $totalPaid = Expenses::where('date', date('Y-m-d'))->where('status', 3)->sum('amount');
+        $totalCancel = Expenses::where('date', date('Y-m-d'))->where('status', 4)->sum('amount');
+        $total = $totalSubmit + $totalPending + $totalPaid + $totalCancel;
+
+        return view('account.dailyExpenses', compact('expenses','categories','admins','totalSubmit','totalPending','totalCancel','total','totalPaid','expensesstatusPaid','expensesstatusProcessing','expensesstatusReject','expensesstatusSubmited'));
     }
 
     public function getSubCategory(Request $request, $id)
@@ -178,5 +196,34 @@ class AccountController extends Controller
         $exstatus->status = $request->has('cbxExpensesStatus')? $request->get('cbxExpensesStatus'):'';
         $exstatus->update();
         return redirect('/daily-expenses-view')->with('success','Daily expeses status updated successfully.');
+    }
+
+    public function expensesSearch(Request $request)
+    {
+        $date = $request->has('cbxDate') ? $request->get('cbxDate'):'';
+        $invoice = $request->has('txtSearchorders')? $request->get('txtSearchorders'):'';
+
+        if($date == 1)
+        {
+            $expenses = Expenses::where('invoice', $invoice)->whereDate('date', date('Y-m-d'))->get();
+        }
+        elseif($date == 2)
+        {
+            $expenses = Expenses::whereBetween('date', [Carbon::now()->subDays(7), Carbon::now()])->get();
+        }
+        elseif($date == 3)
+        {
+            $expenses = Expenses::where('invoice', $invoice)->whereDate('date', date('Y-m-d'))->get();
+        }
+        elseif($date == 4)
+        {
+            $expenses = Expenses::where('invoice', $invoice)->whereDate('date', date('Y-m-d'))->get();
+        }
+        else
+        {
+            //
+        }
+        dd($expenses);
+        return $request->all();
     }
 }

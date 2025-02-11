@@ -229,7 +229,7 @@
 					        <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
 						        <ul class="submenu-list list-unstyled">
 							        <li class="submenu-item"><a class="submenu-link" href="/admin/logout">Login</a></li>
-							        <li class="submenu-item"><a class="submenu-link" href="signup.html">Signup</a></li>
+							        <li class="submenu-item"><a class="submenu-link" href="/signup/admin">Signup</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="reset-password.html">Reset password</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="404.html">404 page</a></li>
 						        </ul>

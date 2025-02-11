@@ -15,12 +15,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/expenses', [App\Http\Controllers\HomeController::class, 'expenses'])->name('expenses');
 
 // backend routes
 
 Route::get('/login/admin',[AdminController::class,'adminloginform'])->name('admin.login.form');
+Route::get('/signup/admin',[AdminController::class,'adminSignupForm'])->name('admin.signup.form');
 
 Route::post('/login-admin',[AdminController::class,'adminlogin'])->name('admin.login');
+Route::get('/signup-admin',[AdminController::class,'adminsignup'])->name('admin.signup');
 
 Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin/dashboard',[DashboardController::class,'admindashboard'])->name('admin.dashboard');
@@ -56,4 +59,5 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/daily-expenses-insert', [AccountController::class, 'addDailyExpenses']);
     Route::get('/expenses-status/{id}', [AccountController::class, 'expensesStatus']);
     Route::get('/updated-expenses/{id}', [AccountController::class, 'UpdateexpensesStatus']);
+    Route::get('/expenses-search', [AccountController::class, 'expensesSearch']);
 });

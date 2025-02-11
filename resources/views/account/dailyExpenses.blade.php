@@ -64,7 +64,6 @@
 <div class="app-wrapper">
 
         <div class="app-content pt-3 p-md-3 p-lg-4">
-        <p class="lead">Total Expenses: ৳ {{$total}}/-</p>
             @if($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -149,7 +148,7 @@
     </div>
 
 
-    <div class="container-xl">
+    <!-- <div class="container-xl">
         <div class="row g-4 mb-4">
             <div class="col-lg-12 col-lg-6 " >
                 <div class="app-card app-card-stat shadow-sm h-100">
@@ -201,8 +200,320 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
+    <div class="">
+	    
+	    <div class="app-content pt-3 p-md-3 p-lg-4">
+		    <div class="container-xl">
+			    
+			    <div class="row g-3 mb-4 align-items-center justify-content-between">
+				    <div class="col-auto">
+			            <h1 class="app-page-title mb-0">Transection Statement</h1>
+				    </div>
+				    <div class="col-auto">
+					     <div class="page-utilities">
+						    <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+							    <div class="col-auto">
+								    <form class="table-search-form row gx-1 align-items-center" action="/expenses-search" method="GET">
+					                    <div class="col-auto">
+					                        <input type="text" id="search-orders" name="txtSearchorders" class="form-control search-orders" placeholder="Search">
+					                    </div>
+                                        <div class="col-auto">
+                                            <select name="cbxDate" class="form-select w-auto" >
+                                                <option selected value="1">All</option>
+                                                <option value="2">This week</option>
+                                                <option value="3">This month</option>
+                                                <option value="4">Last 3 months</option>
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+					                        <button type="submit" class="btn app-btn-secondary">Search</button>
+					                    </div>
+					                </form>					                
+							    </div>
+							    
+							    <div class="col-auto">						    
+								    <a class="btn app-btn-secondary" href="#">
+									    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                        <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                                        </svg>
+									    Download
+									</a>
+							    </div>
+						    </div><!--//row-->
+					    </div><!--//table-utilities-->
+				    </div><!--//col-auto-->
+			    </div><!--//row-->
+			   
+			    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+				    <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
+				    <a class="flex-sm-fill text-sm-center nav-link"  id="orders-Submited-tab" data-bs-toggle="tab" href="#orders-Submited" role="tab" aria-controls="orders-Submited" aria-selected="false">Submited</a>
+				    <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">Paid</a>
+				    <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#orders-pending" role="tab" aria-controls="orders-pending" aria-selected="false">Pending</a>
+				    <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">Cancelled</a>
+				</nav>
+				
+				<div class="tab-content" id="orders-table-tab-content">
+			        <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+					    <div class="app-card app-card-orders-table shadow-sm mb-5">
+						    <div class="app-card-body p-3 p-lg-4">
+							    <div class="table-responsive">
+							        <table class="table app-table-hover mb-0 text-left">
+										<thead>
+											<tr>
+												<th class="cell">Order</th>
+												<th class="cell">Product</th>
+												<th class="cell">User</th>
+												<th class="cell">Date</th>
+												<th class="cell">Status</th>
+												<th class="cell">Total</th>
+												<th class="cell"></th>
+												<th class="cell"></th>
+											</tr>
+										</thead>
+										<tbody>
+                                        @foreach($expenses as $i => $row)
+											<tr>
+												<td class="cell">#INV-{{$row->invoice}}</td>
+												<td class="cell"><span class="truncate">{{$row->exreceived->name}} dolor sit amet eget volutpat erat</span></td>
+												<td class="cell">{{$row->exreceived->name}}</td>
+												<td class="cell"><span>{{$row->created_at->format('d-M')}}</span><span class="note">{{$row->created_at->format('h:i A')}}</span></td>
+												@if($row->status == 1)
+                                                <td class="cell"><span class="badge bg-info">Submited</span></td>
+                                                @elseif($row->status == 2)
+                                                <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                                @elseif($row->status == 3)
+                                                <td class="cell"><span class="badge bg-success">paid</span></td>
+                                                @elseif($row->status == 4)
+                                                <td class="cell"><span class="badge bg-danger">Cancelled</span></td>
+                                                @endif
+												<td class="cell">${{$row->amount}}/-</td>
+												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+												<td class="cell"><a class="btn-sm " href="{{url('/expenses-status/'.$row->id)}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                                </svg></a></td>
+											</tr>
+                                        @endforeach
+										</tbody><p class="lead">Total  : ৳ {{$total}}/-</p>
+									</table>
+						        </div><!--//table-responsive-->
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+						<nav class="app-pagination">
+							<ul class="pagination justify-content-center">
+                            {{ $expenses->onEachSide(1)->links() }}
+							</ul>
+						</nav><!--//app-pagination-->
+						
+			        </div><!--//tab-pane-->
+			        
+			        <div class="tab-pane fade" id="orders-paid" role="tabpanel" aria-labelledby="orders-paid-tab">
+					    <div class="app-card app-card-orders-table mb-5">
+						    <div class="app-card-body">
+							    <div class="table-responsive">
+								    
+							        <table class="table mb-0 text-left">
+										<thead>
+											<tr>
+												<th class="cell">Order</th>
+												<th class="cell">Product</th>
+												<th class="cell">User</th>
+												<th class="cell">Date</th>
+												<th class="cell">Status</th>
+												<th class="cell">Total</th>
+												<th class="cell"></th>
+												<th class="cell"></th>
+											</tr>
+										</thead>
+										<tbody>
+                                        @foreach($expensesstatusPaid as $i => $row)
+											<tr>
+												<td class="cell">#INV-{{$row->invoice}}</td>
+												<td class="cell"><span class="truncate">{{$row->exreceived->name}} dolor sit amet eget volutpat erat</span></td>
+												<td class="cell">{{$row->exreceived->name}}</td>
+												<td class="cell"><span>{{$row->created_at->format('d-M')}}</span><span class="note">{{$row->created_at->format('h:i A')}}</span></td>
+												@if($row->status == 1)
+                                                <td class="cell"><span class="badge bg-info">Submited</span></td>
+                                                @elseif($row->status == 2)
+                                                <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                                @elseif($row->status == 3)
+                                                <td class="cell"><span class="badge bg-success">paid</span></td>
+                                                @elseif($row->status == 4)
+                                                <td class="cell"><span class="badge bg-danger">Cancelled</span></td>
+                                                @endif
+												<td class="cell">${{$row->amount}}/-</td>
+												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+												<td class="cell"><a class="btn-sm " href="{{url('/expenses-status/'.$row->id)}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                                </svg></a></td>
+											</tr>
+                                        @endforeach
+										</tbody><p class="lead">Total  Paid: ৳ {{$totalPaid}}/-</p>
+									</table>
+						        </div><!--//table-responsive-->
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+                        <nav class="app-pagination">
+							<ul class="pagination justify-content-center">
+                            {{ $expenses->onEachSide(1)->links() }}
+							</ul>
+						</nav><!--//app-pagination-->
+			        </div><!--//tab-pane-->
+
+                    <!--=============================================================================================================================================================================-->
+
+                    <div class="tab-pane fade" id="orders-Submited" role="tabpanel" aria-labelledby="orders-Submited-tab">
+					    <div class="app-card app-card-orders-table mb-5">
+						    <div class="app-card-body">
+							    <div class="table-responsive">
+							        <table class="table mb-0 text-left">
+										<thead>
+											<tr>
+												<th class="cell">Order</th>
+												<th class="cell">Product</th>
+												<th class="cell">User</th>
+												<th class="cell">Date</th>
+												<th class="cell">Status</th>
+												<th class="cell">Total</th>
+												<th class="cell"></th>
+											</tr>
+										</thead>
+										<tbody>
+                                        @foreach($expensesstatusSubmited as $i => $row)
+											<tr>
+												<td class="cell">#INV-{{$row->invoice}}</td>
+												<td class="cell"><span class="truncate">{{$row->exreceived->name}} dolor sit amet eget volutpat erat</span></td>
+												<td class="cell">{{$row->exreceived->name}}</td>
+												<td class="cell"><span>{{$row->created_at->format('d-M')}}</span><span class="note">{{$row->created_at->format('h:i A')}}</span></td>
+												@if($row->status == 1)
+                                                <td class="cell"><span class="badge bg-info">Submited</span></td>
+                                                @endif
+												<td class="cell">${{$row->amount}}/-</td>
+												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+												<td class="cell"><a class="btn-sm " href="{{url('/expenses-status/'.$row->id)}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                                </svg></a></td>
+											</tr>
+                                        @endforeach
+										</tbody><p class="lead">Total  Submit: ৳ {{$totalSubmit}}/-</p>
+									</table>
+						        </div><!--//table-responsive-->
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+                        <nav class="app-pagination">
+							<ul class="pagination justify-content-center">
+                            {{ $expenses->onEachSide(1)->links() }}
+							</ul>
+						</nav><!--//app-pagination-->
+			        </div><!--//tab-pane-->
+
+                    <!--=============================================================================================================================================================================-->
+			        
+			        <div class="tab-pane fade" id="orders-pending" role="tabpanel" aria-labelledby="orders-pending-tab">
+					    <div class="app-card app-card-orders-table mb-5">
+						    <div class="app-card-body">
+							    <div class="table-responsive">
+							        <table class="table mb-0 text-left">
+										<thead>
+											<tr>
+												<th class="cell">Order</th>
+												<th class="cell">Product</th>
+												<th class="cell">User</th>
+												<th class="cell">Date</th>
+												<th class="cell">Status</th>
+												<th class="cell">Total</th>
+												<th class="cell"></th>
+											</tr>
+										</thead>
+										<tbody>
+                                        @foreach($expensesstatusProcessing as $i => $row)
+											<tr>
+												<td class="cell">#INV-{{$row->invoice}}</td>
+												<td class="cell"><span class="truncate">{{$row->exreceived->name}} dolor sit amet eget volutpat erat</span></td>
+												<td class="cell">{{$row->exreceived->name}}</td>
+												<td class="cell"><span>{{$row->created_at->format('d-M')}}</span><span class="note">{{$row->created_at->format('h:i A')}}</span></td>
+												@if($row->status == 2)
+                                                <td class="cell"><span class="badge bg-warning">Pending</span></td>
+                                                @endif
+												<td class="cell">${{$row->amount}}/-</td>
+												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+												<td class="cell"><a class="btn-sm " href="{{url('/expenses-status/'.$row->id)}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                                </svg></a></td>
+											</tr>
+                                        @endforeach
+										</tbody><p class="lead">Total  Pending: ৳ {{$totalPending}}/-</p>
+									</table>
+						        </div><!--//table-responsive-->
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+                        <nav class="app-pagination">
+							<ul class="pagination justify-content-center">
+                            {{ $expenses->onEachSide(1)->links() }}
+							</ul>
+						</nav><!--//app-pagination-->
+			        </div><!--//tab-pane-->
+
+			        <div class="tab-pane fade" id="orders-cancelled" role="tabpanel" aria-labelledby="orders-cancelled-tab">
+					    <div class="app-card app-card-orders-table mb-5">
+						    <div class="app-card-body">
+							    <div class="table-responsive">
+							        <table class="table mb-0 text-left">
+										<thead>
+											<tr>
+												<th class="cell">Order</th>
+												<th class="cell">Product</th>
+												<th class="cell">User</th>
+												<th class="cell">Date</th>
+												<th class="cell">Status</th>
+												<th class="cell">Total</th>
+												<th class="cell"></th>
+											</tr>
+										</thead>
+										<tbody>
+                                        @foreach($expensesstatusReject as $i => $row)
+											<tr>
+												<td class="cell">#INV-{{$row->invoice}}</td>
+												<td class="cell"><span class="truncate">{{$row->exreceived->name}} dolor sit amet eget volutpat erat</span></td>
+												<td class="cell">{{$row->exreceived->name}}</td>
+												<td class="cell"><span>{{$row->created_at->format('d-M')}}</span><span class="note">{{$row->created_at->format('h:i A')}}</span></td>
+												@if($row->status == 4)
+                                                <td class="cell"><span class="badge bg-danger">Cancelled</span></td>
+                                                @endif
+												<td class="cell">${{$row->amount}}/-</td>
+												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+												<td class="cell"><a class="btn-sm " href="{{url('/expenses-status/'.$row->id)}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                                </svg></a></td>
+											</tr>
+                                        @endforeach
+										</tbody><p class="lead">Total  Cancel: ৳ {{$totalCancel}}/-</p>
+									</table>
+						        </div><!--//table-responsive-->
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+                        <nav class="app-pagination">
+                            <ul class="pagination justify-content-center">
+                            {{ $expenses->onEachSide(1)->links() }}
+                            </ul>
+                        </nav><!--//app-pagination-->
+			        </div><!--//tab-pane-->
+				</div><!--//tab-content-->
+				
+				
+			    
+		    </div><!--//container-fluid-->
+	    </div><!--//app-content-->
+	    
+    </div><!--//app-wrapper-->    	
 
         @include('layouts.footer')
 </div>
