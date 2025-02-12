@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\AgentController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Account\AccountController;
+use App\Http\Controllers\Account\SettingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -60,4 +61,10 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/expenses-status/{id}', [AccountController::class, 'expensesStatus']);
     Route::get('/updated-expenses/{id}', [AccountController::class, 'UpdateexpensesStatus']);
     Route::get('/expenses-search', [AccountController::class, 'expensesSearch']);
+    Route::get('/generate-pdf', [AccountController::class, 'generatepdf']);
+
+    // setting section route 
+    Route::get('/setting-view', [SettingController::class, 'settingView'])->name('setting.view');
+    Route::get('/category-insert', [SettingController::class, 'categoryInsert']);
+    Route::get('/sub-category-insert', [SettingController::class, 'subCategoryInsert']);
 });

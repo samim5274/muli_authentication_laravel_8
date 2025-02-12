@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2025 at 08:09 PM
+-- Generation Time: Feb 12, 2025 at 12:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -276,7 +276,14 @@ INSERT INTO `expenses` (`id`, `date`, `invoice`, `sender_id`, `receiver_id`, `ca
 (25, '2025-02-12', 202502121, 7, 6, 1, 1, 1000, 'N/A', 3, '2025-02-11 18:03:54', '2025-02-11 18:06:31'),
 (26, '2025-02-12', 202502122, 7, 4, 1, 1, 1000, 'N/A', 2, '2025-02-11 18:30:53', '2025-02-11 18:31:26'),
 (27, '2025-02-12', 202502123, 7, 6, 2, 4, 1000, 'N/A', 1, '2025-02-11 18:31:05', '2025-02-11 18:31:05'),
-(28, '2025-02-12', 202502124, 7, 2, 2, 2, 1000, 'N/A', 4, '2025-02-11 18:31:16', '2025-02-11 18:31:38');
+(28, '2025-02-12', 202502124, 7, 2, 2, 2, 1000, 'N/A', 4, '2025-02-11 18:31:16', '2025-02-11 18:31:38'),
+(29, '2025-02-12', 202502125, 1, 6, 2, 4, 250, 'N/A', 3, '2025-02-12 06:15:07', '2025-02-12 06:15:46'),
+(30, '2025-02-12', 202502126, 1, 3, 2, 4, 120, 'N/A', 1, '2025-02-12 08:45:49', '2025-02-12 08:45:49'),
+(31, '2025-02-12', 202502127, 1, 3, 2, 4, 520, 'N/A', 4, '2025-02-12 08:48:14', '2025-02-12 08:54:43'),
+(32, '2025-02-12', 202502128, 1, 2, 1, 1, 420, 'N/A', 2, '2025-02-12 08:48:24', '2025-02-12 08:54:37'),
+(33, '2025-02-12', 202502129, 1, 4, 1, 3, 120, 'N/A', 2, '2025-02-12 08:48:41', '2025-02-12 08:54:58'),
+(34, '2025-02-12', 2025021210, 1, 6, 3, 5, 120, 'N/A', 1, '2025-02-12 11:15:52', '2025-02-12 11:15:52'),
+(35, '2025-02-12', 2025021211, 1, 7, 4, 6, 150, 'N/A', 2, '2025-02-12 11:16:08', '2025-02-12 11:16:13');
 
 -- --------------------------------------------------------
 
@@ -297,7 +304,9 @@ CREATE TABLE `ex_categories` (
 
 INSERT INTO `ex_categories` (`id`, `CatName`, `created_at`, `updated_at`) VALUES
 (1, 'Electronics', NULL, NULL),
-(2, 'Clothing', NULL, NULL);
+(2, 'Clothing', NULL, NULL),
+(3, 'Food', '2025-02-12 11:01:58', '2025-02-12 11:01:58'),
+(4, 'Entertaintment', '2025-02-12 11:02:54', '2025-02-12 11:02:54');
 
 -- --------------------------------------------------------
 
@@ -397,7 +406,9 @@ INSERT INTO `sub_ex_categories` (`id`, `category_Id`, `name`, `created_at`, `upd
 (1, 1, 'Mobile Phones', NULL, NULL),
 (2, 2, 'Shirts', NULL, NULL),
 (3, 1, 'Laptops', NULL, NULL),
-(4, 2, 'Jeans', NULL, NULL);
+(4, 2, 'Jeans', NULL, NULL),
+(5, 3, 'Evening Food', '2025-02-12 11:05:09', '2025-02-12 11:05:09'),
+(6, 4, 'Office Party', '2025-02-12 11:06:31', '2025-02-12 11:06:31');
 
 -- --------------------------------------------------------
 
@@ -551,13 +562,13 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `ex_categories`
 --
 ALTER TABLE `ex_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -581,7 +592,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `sub_ex_categories`
 --
 ALTER TABLE `sub_ex_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`

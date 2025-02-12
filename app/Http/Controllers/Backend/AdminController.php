@@ -48,6 +48,7 @@ class AdminController extends Controller
 
     public function adminSignupForm()
     {
+        Auth::guard('admin')->logout();
         return view('backend.admin.signup');
     }
 
