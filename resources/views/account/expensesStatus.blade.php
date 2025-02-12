@@ -91,30 +91,22 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="Status" class="form-label">Status</label>
+                                    @php
+                                        $statuses = [
+                                            1 => 'Submitted',
+                                            2 => 'Processing',
+                                            3 => 'Approved',
+                                            4 => 'Rejected'
+                                        ];
+                                    @endphp
+
                                     <select class="form-select" name="cbxExpensesStatus" id="Status" required>
                                         <option selected disabled>--Select Status--</option>
-                                        @if($status->status == 1)
-                                        <option selected value="1">Submited</option>
-                                        <option value="2">Processing</option>
-                                        <option value="3">Approved</option>
-                                        <option value="4">Rejected</option>
-                                        @elseif($status->status == 2)
-                                        <option value="1">Submited</option>
-                                        <option selected value="2">Processing</option>
-                                        <option value="3">Approved</option>
-                                        <option value="4">Rejected</option>
-                                        @elseif($status->status == 3)
-                                        <option value="1">Submited</option>
-                                        <option value="2">Processing</option>
-                                        <option selected value="3">Approved</option>
-                                        <option value="4">Rejected</option>
-                                        @elseif($status->status == 4)
-                                        <option value="1">Submited</option>
-                                        <option value="2">Processing</option>
-                                        <option value="3">Approved</option>
-                                        <option selected value="4">Rejected</option>
-                                        @endif
+                                        @foreach($statuses as $key => $value)
+                                            <option value="{{ $key }}" {{ $status->status == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                        @endforeach
                                     </select>
+
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100">Update</button>
                             </form>

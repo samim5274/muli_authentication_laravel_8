@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2025 at 12:47 PM
+-- Generation Time: Feb 11, 2025 at 08:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -83,7 +83,8 @@ INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `r
 (3, 'Sabbir Hossain', 'sabbir@gmail.com', NULL, '$2y$10$a3MDoBUE.oUhfU9zoiKzh.ON4gHpasdwy9X1OuY4mPop8MwFpJbNu', NULL, NULL, NULL),
 (4, 'Aklima Akter', 'aklima@gmail.com', NULL, '$2y$10$tMZExm9X0VYdUoScMjp1B.yQ/uXpm8LLdNhUi48mejtgiMKIpFqXW', NULL, '2025-02-11 08:13:26', '2025-02-11 08:13:26'),
 (5, 'Taslima Akter Eity', 'taslima@gmail.com', NULL, '$2y$10$hVEiGWd9Hc0Tge3tsrJjDOiW3AWns4RoTLSkrs5fiLpZoQdrTy0tC', NULL, '2025-02-11 08:16:39', '2025-02-11 08:16:39'),
-(6, 'Mimi Akter', 'mimi@gmail.com', NULL, '$2y$10$2X.RrBjSvOd1MlL.QhpZDeUX48A3YUqixZPS5UIw.9.BHLLcBVSpu', NULL, '2025-02-11 08:17:18', '2025-02-11 08:17:18');
+(6, 'Mimi Akter', 'mimi@gmail.com', NULL, '$2y$10$2X.RrBjSvOd1MlL.QhpZDeUX48A3YUqixZPS5UIw.9.BHLLcBVSpu', NULL, '2025-02-11 08:17:18', '2025-02-11 08:17:18'),
+(7, 'Akib Hossain', 'akib@gmail.com', NULL, '$2y$10$UmnUtRmMMkbBNQVPqH6LBOd.v9sNQ0RuUU9x2gOvU3.vWNaVSiFEe', NULL, '2025-02-11 17:20:14', '2025-02-11 17:20:14');
 
 -- --------------------------------------------------------
 
@@ -271,7 +272,11 @@ INSERT INTO `expenses` (`id`, `date`, `invoice`, `sender_id`, `receiver_id`, `ca
 (21, '2025-02-11', 202502118, 1, 3, 1, 3, 1000, 'N/A', 4, '2025-02-11 09:58:41', '2025-02-11 10:43:01'),
 (22, '2025-02-11', 202502119, 1, 4, 2, 4, 1000, 'N/A', 2, '2025-02-11 09:58:47', '2025-02-11 10:01:38'),
 (23, '2025-02-11', 2025021110, 1, 6, 1, 3, 750, 'N/A', 4, '2025-02-11 10:37:39', '2025-02-11 10:43:44'),
-(24, '2025-02-11', 2025021111, 1, 5, 2, 2, 250, 'N/A', 3, '2025-02-11 10:37:54', '2025-02-11 10:43:14');
+(24, '2025-02-11', 2025021111, 1, 5, 2, 2, 250, 'N/A', 3, '2025-02-11 10:37:54', '2025-02-11 10:43:14'),
+(25, '2025-02-12', 202502121, 7, 6, 1, 1, 1000, 'N/A', 3, '2025-02-11 18:03:54', '2025-02-11 18:06:31'),
+(26, '2025-02-12', 202502122, 7, 4, 1, 1, 1000, 'N/A', 2, '2025-02-11 18:30:53', '2025-02-11 18:31:26'),
+(27, '2025-02-12', 202502123, 7, 6, 2, 4, 1000, 'N/A', 1, '2025-02-11 18:31:05', '2025-02-11 18:31:05'),
+(28, '2025-02-12', 202502124, 7, 2, 2, 2, 1000, 'N/A', 4, '2025-02-11 18:31:16', '2025-02-11 18:31:38');
 
 -- --------------------------------------------------------
 
@@ -522,7 +527,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `agents`
@@ -546,7 +551,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `ex_categories`

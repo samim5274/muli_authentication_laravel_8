@@ -200,30 +200,80 @@ class AccountController extends Controller
 
     public function expensesSearch(Request $request)
     {
+        $expenses = Expenses::with('exsend','exreceived','excategory','exsubcategory')->whereDate('date', date('Y-m-d'))->paginate(8);
+
+        $expensesstatusSubmited = Expenses::with('exsend','exreceived','excategory','exsubcategory')->where('status',1)->whereDate('date', date('Y-m-d'))->paginate(8);
+        $expensesstatusPaid = Expenses::with('exsend','exreceived','excategory','exsubcategory')->where('status',3)->whereDate('date', date('Y-m-d'))->paginate(8);
+        $expensesstatusProcessing = Expenses::with('exsend','exreceived','excategory','exsubcategory')->where('status',2)->whereDate('date', date('Y-m-d'))->paginate(8);
+        $expensesstatusReject = Expenses::with('exsend','exreceived','excategory','exsubcategory')->where('status',4)->whereDate('date', date('Y-m-d'))->paginate(8);
+
+        $categories = ExCategory::all();
+        $admins = Admin::all(); 
+
+
         $date = $request->has('cbxDate') ? $request->get('cbxDate'):'';
         $invoice = $request->has('txtSearchorders')? $request->get('txtSearchorders'):'';
 
-        if($date == 1)
+        if(isset($invoice))
         {
-            $expenses = Expenses::where('invoice', $invoice)->whereDate('date', date('Y-m-d'))->get();
-        }
-        elseif($date == 2)
-        {
-            $expenses = Expenses::whereBetween('date', [Carbon::now()->subDays(7), Carbon::now()])->get();
-        }
-        elseif($date == 3)
-        {
-            $expenses = Expenses::where('invoice', $invoice)->whereDate('date', date('Y-m-d'))->get();
-        }
-        elseif($date == 4)
-        {
-            $expenses = Expenses::where('invoice', $invoice)->whereDate('date', date('Y-m-d'))->get();
+            $SrcExpenses = Expenses::where('invoice', $invoice)->get();
         }
         else
         {
-            //
+            switch($date)
+            {
+                case 1:
+                    $SrcExpenses = Expenses::all();
+                    $totalSubmit = Expenses::where('status', 1)->sum('amount');
+                    $totalPending = Expenses::where('status', 2)->sum('amount');
+                    $totalPaid = Expenses::where('status', 3)->sum('amount');
+                    $totalCancel = Expenses::where('status', 4)->sum('amount');
+                    $total = $totalSubmit + $totalPending + $totalPaid + $totalCancel;
+                    break;
+                
+                case 2:
+                    $SrcExpenses = Expenses::whereBetween('date', [Carbon::now()->subDays(7), Carbon::now()])->get();
+                    $totalSubmit = Expenses::where('date', date('Y-m-d'))->where('status', 1)->whereBetween('date', [Carbon::now()->subDays(7), Carbon::now()])->sum('amount');
+                    $totalPending = Expenses::where('date', date('Y-m-d'))->where('status', 2)->whereBetween('date', [Carbon::now()->subDays(7), Carbon::now()])->sum('amount');
+                    $totalPaid = Expenses::where('date', date('Y-m-d'))->where('status', 3)->whereBetween('date', [Carbon::now()->subDays(7), Carbon::now()])->sum('amount');
+                    $totalCancel = Expenses::where('date', date('Y-m-d'))->where('status', 4)->whereBetween('date', [Carbon::now()->subDays(7), Carbon::now()])->sum('amount');
+                    $total = $totalSubmit + $totalPending + $totalPaid + $totalCancel;
+                    break;
+
+                case 3:
+                    $lastMonthStart = Carbon::now()->subMonth()->startOfMonth();
+                    $lastMonthEnd = Carbon::now()->subMonth()->endOfMonth();
+                    $totalSubmit = Expenses::where('date', date('Y-m-d'))->where('status', 1)->whereBetween('date', [$lastMonthStart,$lastMonthEnd])->sum('amount');
+                    $totalPending = Expenses::where('date', date('Y-m-d'))->where('status', 2)->whereBetween('date', [$lastMonthStart,$lastMonthEnd])->sum('amount');
+                    $totalPaid = Expenses::where('date', date('Y-m-d'))->where('status', 3)->whereBetween('date', [$lastMonthStart,$lastMonthEnd])->sum('amount');
+                    $totalCancel = Expenses::where('date', date('Y-m-d'))->where('status', 4)->whereBetween('date', [$lastMonthStart,$lastMonthEnd])->sum('amount');
+                    $total = $totalSubmit + $totalPending + $totalPaid + $totalCancel;
+                    $SrcExpenses = Expenses::whereBetween('date', [$lastMonthStart,$lastMonthEnd])->get();
+                    break;
+
+                case 4:
+                    $lastMonthStart = Carbon::now()->subMonth(3)->startOfMonth();
+                    $lastMonthEnd = Carbon::now()->endOfMonth();
+                    $totalSubmit = Expenses::where('date', date('Y-m-d'))->where('status', 1)->whereBetween('date', [$lastMonthStart,$lastMonthEnd])->sum('amount');
+                    $totalPending = Expenses::where('date', date('Y-m-d'))->where('status', 2)->whereBetween('date', [$lastMonthStart,$lastMonthEnd])->sum('amount');
+                    $totalPaid = Expenses::where('date', date('Y-m-d'))->where('status', 3)->whereBetween('date', [$lastMonthStart,$lastMonthEnd])->sum('amount');
+                    $totalCancel = Expenses::where('date', date('Y-m-d'))->where('status', 4)->whereBetween('date', [$lastMonthStart,$lastMonthEnd])->sum('amount');
+                    $total = $totalSubmit + $totalPending + $totalPaid + $totalCancel;
+                    $SrcExpenses = Expenses::whereBetween('date', [$lastMonthStart,$lastMonthEnd])->get();
+                    break;
+
+                default:
+                    $SrcExpenses = Expenses::whereDate('date', date('Y-m-d'))->get();
+                    $totalSubmit = Expenses::where('date', date('Y-m-d'))->where('status', 1)->sum('amount');
+                    $totalPending = Expenses::where('date', date('Y-m-d'))->where('status', 2)->sum('amount');
+                    $totalPaid = Expenses::where('date', date('Y-m-d'))->where('status', 3)->sum('amount');
+                    $totalCancel = Expenses::where('date', date('Y-m-d'))->where('status', 4)->sum('amount');
+                    $total = $totalSubmit + $totalPending + $totalPaid + $totalCancel;
+                    break;
+            }
         }
-        dd($expenses);
-        return $request->all();
+
+        // dd($SrcExpenses);
+        return view('account.dailyExpenses', compact('SrcExpenses','expenses','categories','admins','totalSubmit','totalPending','totalCancel','total','totalPaid','expensesstatusPaid','expensesstatusProcessing','expensesstatusReject','expensesstatusSubmited'));
     }
 }
