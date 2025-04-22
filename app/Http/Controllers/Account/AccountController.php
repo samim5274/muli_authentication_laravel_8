@@ -312,10 +312,17 @@ class AccountController extends Controller
     {
         $value = Expenses::whereDate('date', date('Y-m-d'))->get();
 
+        $totalSubmit = Expenses::where('date', date('Y-m-d'))->where('status', 1)->sum('amount');
+        $totalPending = Expenses::where('date', date('Y-m-d'))->where('status', 2)->sum('amount');
+        $totalPaid = Expenses::where('date', date('Y-m-d'))->where('status', 3)->sum('amount');
+        $totalCancel = Expenses::where('date', date('Y-m-d'))->where('status', 4)->sum('amount');
+        $total = $totalSubmit + $totalPending + $totalPaid + $totalCancel;
+
         $data = [
-            'title' => 'Laravel 8 PDF Example',
+            'title' => 'Swift Overseas Tours & Travels',
             'date' => date('m/d/Y'),
             'value' => $value,
+            'total' => $total,
             'content' => 'This is an example PDF generated in Laravel 8 using DomPDF.'
         ];
 

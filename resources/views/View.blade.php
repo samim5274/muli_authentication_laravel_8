@@ -21,7 +21,7 @@
     <link id="theme-style" rel="stylesheet" href="/assets/css/portal.css">
     <style>
         body { font-family: Arial, sans-serif; }
-        h1 { color: navy; }
+        h1 { color: navy; text-align: center; }
         p { font-size: 14px; }
     </style>
 </head>
@@ -29,44 +29,49 @@
     <h1>{{ $title }}</h1>
     <p>Date: {{ $date }}</p>
     <p>{{ $content }}</p>
+    <h5>Total BDT:{{$total}}/-</h5>
 
-    <div class="table-responsive">
-        <table class="table app-table-hover mb-0 text-left">
-            <thead>
-                <tr>
-                    <th class="cell">Order</th>
-                    <th class="cell">Product</th>
-                    <th class="cell">User</th>
-                    <th class="cell">Date</th>
-                    <th class="cell">Status</th>
-                    <th class="cell">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($value as $i => $row)
-                    <tr>
-                        <td class="cell">#INV-{{$row->invoice}}</td>
-                        <td class="cell"><span class="truncate">{{$row->exreceived->name}} dolor sit amet eget volutpat erat</span></td>
-                        <td class="cell">{{$row->exreceived->name}}</td>
-                        <td class="cell"><span>{{$row->created_at->format('d-M')}}</span><span class="note">{{$row->created_at->format('h:i A')}}</span></td>
-                        @php
-                            $statuses = [
-                                1 => ['text' => 'Submitted', 'class' => 'bg-info'],
-                                2 => ['text' => 'Pending', 'class' => 'bg-warning'],
-                                3 => ['text' => 'Paid', 'class' => 'bg-success'],
-                                4 => ['text' => 'Cancelled', 'class' => 'bg-danger']
-                            ];
-                        @endphp
-                        <td class="cell">
-                            <span class="badge {{ $statuses[$row->status]['class'] }}">
-                                {{ $statuses[$row->status]['text'] }}
-                            </span>
-                        </td>
-                        <td class="cell">${{$row->amount}}/-</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+    <div class="app-card app-card-orders-table shadow-sm mb-5">
+        <div class="app-card-body p-3 p-lg-4">
+            <div class="table-responsive">
+                <table class="table app-table-hover mb-0 text-left">
+                    <thead>
+                        <tr>
+                            <th class="cell">Order</th>
+                            <th class="cell">Product</th>
+                            <th class="cell">User</th>
+                            <th class="cell">Date</th>
+                            <th class="cell">Status</th>
+                            <th class="cell">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($value as $i => $row)
+                            <tr>
+                                <td class="cell">#INV-{{$row->invoice}}</td>
+                                <td class="cell"><span class="truncate">{{$row->exreceived->name}} {{$row->excategory->CatName}} {{$row->exsubcategory->name}} dolor sit amet eget volutpat erat</span></td>
+                                <td class="cell">{{$row->exreceived->name}}</td>
+                                <td class="cell"><span>{{$row->created_at->format('d-M')}}</span><span class="note">{{$row->created_at->format('h:i A')}}</span></td>
+                                @php
+                                    $statuses = [
+                                        1 => ['text' => 'Submitted', 'class' => 'bg-info'],
+                                        2 => ['text' => 'Pending', 'class' => 'bg-warning'],
+                                        3 => ['text' => 'Paid', 'class' => 'bg-success'],
+                                        4 => ['text' => 'Cancelled', 'class' => 'bg-danger']
+                                    ];
+                                @endphp
+                                <td class="cell">
+                                    <span class="badge {{ $statuses[$row->status]['class'] }}">
+                                        {{ $statuses[$row->status]['text'] }}
+                                    </span>
+                                </td>
+                                <td class="cell">${{$row->amount}}/-</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div><!--//table-responsive-->
+        </div><!--//app-card-body-->		
+    </div><!--//app-card-->
 </body>
 </html>

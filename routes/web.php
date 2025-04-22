@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Account\SettingController;
+use App\Http\Controllers\Hospital\HospitalController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,10 +62,15 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/expenses-status/{id}', [AccountController::class, 'expensesStatus']);
     Route::get('/updated-expenses/{id}', [AccountController::class, 'UpdateexpensesStatus']);
     Route::get('/expenses-search', [AccountController::class, 'expensesSearch']);
+    //generate pdf file
     Route::get('/generate-pdf', [AccountController::class, 'generatepdf']);
 
     // setting section route 
     Route::get('/setting-view', [SettingController::class, 'settingView'])->name('setting.view');
     Route::get('/category-insert', [SettingController::class, 'categoryInsert']);
     Route::get('/sub-category-insert', [SettingController::class, 'subCategoryInsert']);
+
+    // hospital section route 
+    Route:: get('/test-details', [HospitalController::class, 'testDetails'])->name('hospital.test.view');
+    Route:: get('/setting-hospital', [HospitalController::class, 'settinghospital'])->name('hospital.setting.view');
 });
